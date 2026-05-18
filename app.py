@@ -8,7 +8,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 import tempfile
 
 # =========================================
-# PAGE SETTINGS
+# PAGE CONFIG
 # =========================================
 st.set_page_config(
     page_title="Thermolytix AI",
@@ -44,27 +44,13 @@ def set_bg():
             background-attachment: fixed;
         }}
 
-        .main-card {{
-            background: rgba(0,0,0,0.55);
-            border: 1px solid rgba(255,140,0,0.25);
-            border-radius: 18px;
-            padding: 25px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 18px rgba(255,140,0,0.15);
+        .block-container {{
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }}
 
-        .section-title {{
-            color:#FF9C1A;
-            font-size:28px;
-            font-weight:700;
-            margin-bottom:20px;
-        }}
-
-        .metric-box {{
-            background: rgba(0,0,0,0.45);
-            border:1px solid rgba(255,140,0,0.2);
-            border-radius:16px;
-            padding:20px;
+        section[data-testid="stSidebar"] {{
+            display:none;
         }}
 
         </style>
@@ -76,20 +62,19 @@ def set_bg():
 set_bg()
 
 # =========================================
-# TOP HEADER
+# HEADER
 # =========================================
 st.markdown(f"""
 <div style="
 display:flex;
-align-items:center;
 justify-content:space-between;
-margin-top:-20px;
+align-items:center;
 margin-bottom:20px;
 ">
 
 <div style="display:flex; align-items:center; gap:15px;">
 
-<img src="data:image/png;base64,{logo}" width="90">
+<img src="data:image/png;base64,{logo}" width="120">
 
 <div>
 <div style="
@@ -102,10 +87,10 @@ THERMO<span style="color:#29D8FF;">LYTIX</span>
 </div>
 
 <div style="
-color:#CCCCCC;
 font-size:14px;
+color:#DDDDDD;
 letter-spacing:2px;
-margin-top:4px;
+margin-top:5px;
 ">
 GEARBOX THERMAL ANALYTICS
 </div>
@@ -114,14 +99,21 @@ GEARBOX THERMAL ANALYTICS
 </div>
 
 <div style="
+display:flex;
+gap:15px;
+">
+
+<div style="
 background:rgba(0,0,0,0.5);
-padding:10px 18px;
+padding:12px 18px;
 border-radius:12px;
-border:1px solid rgba(255,140,0,0.2);
+border:1px solid rgba(255,140,0,0.25);
 color:#00FF88;
 font-weight:600;
 ">
 🟢 System Operational
+</div>
+
 </div>
 
 </div>
@@ -139,23 +131,70 @@ model = LinearRegression()
 model.fit(X, y)
 
 # =========================================
-# MAIN LAYOUT
+# MAIN DASHBOARD
 # =========================================
-left, right = st.columns([1.3, 1])
+st.markdown("""
+<div style="
+background:rgba(0,0,0,0.45);
+border-radius:25px;
+padding:30px;
+border:1px solid rgba(255,140,0,0.18);
+backdrop-filter:blur(8px);
+">
+""", unsafe_allow_html=True)
+
+left, right = st.columns([1.2, 1])
 
 # =========================================
-# LEFT PANEL
+# LEFT SIDE
 # =========================================
 with left:
 
     st.markdown("""
-    <div class="main-card">
-    <div class="section-title">
-    ⚙️ Cooling Tower Gear Temp. AI Dashboard
+    <div style="
+    font-size:46px;
+    font-weight:800;
+    color:#FF8C00;
+    margin-bottom:10px;
+    ">
+    ⚙️ Cooling Tower Gear Temp.
     </div>
 
-    <div style="color:#CCCCCC; margin-bottom:25px;">
+    <div style="
+    font-size:24px;
+    color:white;
+    font-weight:600;
+    margin-bottom:18px;
+    ">
+    AI Dashboard
+    </div>
+
+    <div style="
+    color:#CCCCCC;
+    margin-bottom:30px;
+    font-size:16px;
+    ">
     Enter parameters to get AI-powered temperature predictions and system insights.
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="
+    background:rgba(0,0,0,0.35);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,140,0,0.18);
+    ">
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="
+    color:#FF9C1A;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:20px;
+    ">
+    ⚙️ Enter Parameters
     </div>
     """, unsafe_allow_html=True)
 
@@ -169,29 +208,45 @@ with left:
 
     pred_value = model.predict([[load, temp, rpm, oil]])[0]
 
+    st.button("PREDICT TEMPERATURE", use_container_width=True)
+
     st.markdown("</div>", unsafe_allow_html=True)
 
 # =========================================
-# RIGHT PANEL
+# RIGHT SIDE
 # =========================================
 with right:
 
     st.markdown("""
-    <div class="main-card">
-    <div class="section-title">
+    <div style="
+    background:rgba(0,0,0,0.35);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,140,0,0.18);
+    margin-top:90px;
+    ">
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="
+    color:#FF9C1A;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:18px;
+    ">
     📊 Prediction Summary
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown(f"""
-    <h1 style="
+    <div style="
     color:white;
-    font-size:58px;
-    margin-top:-10px;
+    font-size:64px;
+    font-weight:900;
     ">
     {pred_value:.1f}
-    <span style="font-size:24px;">°C</span>
-    </h1>
+    <span style="font-size:26px;">°C</span>
+    </div>
     """, unsafe_allow_html=True)
 
     if pred_value > 90:
@@ -206,7 +261,12 @@ with right:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="section-title">
+    <div style="
+    color:#FF9C1A;
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:15px;
+    ">
     💡 Suggestions
     </div>
     """, unsafe_allow_html=True)
@@ -226,13 +286,26 @@ with right:
     st.markdown("</div>", unsafe_allow_html=True)
 
 # =========================================
-# ANALYSIS
+# ANALYSIS SECTION
 # =========================================
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("""
-<div class="main-card">
-<div class="section-title">
+<div style="
+background:rgba(0,0,0,0.35);
+border-radius:20px;
+padding:25px;
+border:1px solid rgba(255,140,0,0.18);
+">
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="
+color:#FF9C1A;
+font-size:30px;
+font-weight:700;
+margin-bottom:20px;
+">
 📈 Analysis
 </div>
 """, unsafe_allow_html=True)
@@ -295,3 +368,5 @@ if st.button("📁 Download PDF Report"):
             f,
             file_name="Cooling_Tower_Report.pdf"
         )
+
+st.markdown("</div>", unsafe_allow_html=True)
