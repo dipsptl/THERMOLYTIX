@@ -48,9 +48,9 @@ st.markdown(f"""
 }}
 
 .block-container {{
-    padding-top: 0.3rem !important;
-    padding-left: 0.8rem !important;
-    padding-right: 0.8rem !important;
+    padding-top: 0.2rem !important;
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
     max-width: 100% !important;
 }}
 
@@ -63,56 +63,56 @@ footer {{ display: none !important; }}
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 4px 0;
+    padding: 2px 0;
 }}
 .logo-img {{ width: 90px; }}
 .logo-title {{
     color: #ff8800;
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
     line-height: 1.1;
     font-family: 'Arial Black', sans-serif;
 }}
 .logo-sub {{
     color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-top: 2px;
+    font-size: 06px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-top: 1px;
 }}
 
 /* STATUS */
 .system-box {{
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.55);
     border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 20px;
-    padding: 6px 14px;
+    border-radius: 06px;
+    padding: 4px 10px;
     color: white;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 08px;
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     float: right;
-    margin-top: 8px;
+    margin-top: 6px;
 }}
 
 /* CARDS */
 .main-card {{
-    background: rgba(0,0,0,0.72);
+    background: rgba(0,0,0,0.62);
     border: 1px solid rgba(255,140,0,0.35);
-    border-radius: 12px;
-    padding: 10px 12px;
-    backdrop-filter: blur(6px);
-    margin-bottom: 7px;
+    border-radius: 08px;
+    padding: 10px 08px;
+    backdrop-filter: blur(4px);
+    margin-bottom: 5px;
 }}
 
 .title-orange {{
     color: #ff8800;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 6px;
+    font-size: 08px;
+    font-weight: 500;
+    margin-bottom: 4px;
 }}
 
 /* BIG TEMP NUMBER */
