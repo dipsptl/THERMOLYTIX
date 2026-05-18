@@ -18,18 +18,18 @@ st.set_page_config(
 )
 
 # =====================================================
-# BACKGROUND IMAGE
+# IMAGE LOAD
 # =====================================================
 
-def get_base64(file_path):
-    with open(file_path, "rb") as f:
+def get_base64(file):
+    with open(file, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
 bg = get_base64("bg.jpg")
 logo = get_base64("logo.png")
 
 # =====================================================
-# CUSTOM CSS
+# CSS
 # =====================================================
 
 st.markdown(f"""
@@ -40,17 +40,13 @@ st.markdown(f"""
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    color: white;
 }}
 
 .block-container {{
-    padding-top: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}}
-
-section[data-testid="stSidebar"] {{
-    display:none;
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1500px;
 }}
 
 header {{
@@ -66,83 +62,84 @@ footer {{
 }}
 
 .main-card {{
-    background: rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,140,0,0.5);
+    background: rgba(0,0,0,0.72);
+    border: 1px solid rgba(255,140,0,0.35);
     border-radius: 18px;
-    padding: 22px;
-    backdrop-filter: blur(10px);
-    margin-bottom: 20px;
+    padding: 20px;
+    backdrop-filter: blur(6px);
+    margin-bottom: 18px;
 }}
 
 .small-card {{
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,140,0,0.4);
+    background: rgba(0,0,0,0.60);
     border-radius: 15px;
-    padding: 18px;
-    backdrop-filter: blur(8px);
+    padding: 15px;
+}}
+
+.logo-img {{
+    width: 340px;
+    margin-top: -10px;
 }}
 
 .title-orange {{
     color: #ff8800;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }}
 
 .big-number {{
-    font-size: 70px;
+    font-size: 55px;
     font-weight: 800;
     color: white;
-    line-height: 1;
 }}
 
 .safe-box {{
-    background: linear-gradient(90deg,#003b18,#006d2c);
+    background: #006b28;
     border-radius: 10px;
-    padding: 14px;
-    color: #4cff88;
-    font-size: 28px;
+    padding: 12px;
+    color: #67ff99;
+    font-size: 22px;
     font-weight: 700;
 }}
 
 .warn-box {{
-    background: rgba(255,180,0,0.15);
-    border: 1px solid rgba(255,180,0,0.3);
+    background: rgba(255,180,0,0.12);
+    border: 1px solid rgba(255,180,0,0.2);
     border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
     color: #ffd76a;
+    font-size: 15px;
+}}
+
+.system-box {{
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,140,0,0.3);
+    border-radius: 12px;
+    padding: 10px 18px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 230px;
+    margin-left: auto;
 }}
 
 .stButton>button {{
     width: 100%;
-    background: linear-gradient(90deg,#ff8800,#00d4ff);
+    background: linear-gradient(90deg,#ff8800,#00cfff);
     color: white;
     border: none;
     border-radius: 12px;
-    padding: 15px;
-    font-size: 22px;
+    padding: 12px;
+    font-size: 18px;
     font-weight: 700;
 }}
 
-.logo-img {{
-    width: 500px;
-}}
-
-.system-box {{
-    background: rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,140,0,0.4);
-    border-radius: 12px;
-    padding: 14px 22px;
-    color: white;
-    font-size: 22px;
-    text-align: center;
-}}
-
 .graph-card {{
-    background: rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,140,0,0.5);
+    background: rgba(0,0,0,0.72);
+    border: 1px solid rgba(255,140,0,0.35);
     border-radius: 18px;
-    padding: 20px;
+    padding: 15px;
 }}
 
 </style>
@@ -152,7 +149,7 @@ footer {{
 # HEADER
 # =====================================================
 
-top1, top2 = st.columns([4,1])
+top1, top2 = st.columns([5,1])
 
 with top1:
     st.markdown(f"""
@@ -180,13 +177,13 @@ model = LinearRegression()
 model.fit(X, y)
 
 # =====================================================
-# MAIN LAYOUT
+# MAIN SECTION
 # =====================================================
 
 left, right = st.columns([1,1])
 
 # =====================================================
-# LEFT PANEL
+# LEFT SIDE
 # =====================================================
 
 with left:
@@ -194,16 +191,16 @@ with left:
     st.markdown("""
     <div class="main-card">
 
-    <h1 style="color:white; margin-bottom:0px;">
+    <h1 style="color:white;">
     AI Dashboard
     </h1>
 
-    <p style="color:#cfcfcf; font-size:22px;">
+    <p style="color:#d8d8d8; font-size:18px;">
     Enter parameters to get AI-powered temperature predictions and system insights.
     </p>
 
-    <div class="small-card">
-    <div class="title-orange">⚙️ Enter Parameters</div>
+    <div class="title-orange">
+    ⚙️ Enter Parameters
     </div>
 
     </div>
@@ -217,7 +214,7 @@ with left:
     st.button("PREDICT TEMPERATURE")
 
 # =====================================================
-# RIGHT PANEL
+# RIGHT SIDE
 # =====================================================
 
 with right:
@@ -232,8 +229,7 @@ with right:
     </div>
 
     <div class="big-number">
-    {pred_value:.1f}
-    <span style="font-size:40px;">°C</span>
+    {pred_value:.1f} °C
     </div>
 
     <div class="safe-box">
@@ -281,7 +277,7 @@ with right:
     st.markdown("</div>", unsafe_allow_html=True)
 
 # =====================================================
-# ANALYSIS SECTION
+# ANALYSIS
 # =====================================================
 
 st.markdown("""
@@ -300,12 +296,12 @@ g1, g2 = st.columns(2)
 
 with g1:
 
-    fig1, ax1 = plt.subplots(figsize=(7,4))
+    fig1, ax1 = plt.subplots(figsize=(6,3.5))
 
     ax1.scatter(
         data['Load'],
         data['Temperature'],
-        s=80
+        s=60
     )
 
     ax1.set_facecolor("#050b18")
@@ -313,8 +309,7 @@ with g1:
 
     ax1.set_title(
         "Temperature vs Load",
-        color="white",
-        fontsize=16
+        color="white"
     )
 
     ax1.set_xlabel("Load (%)", color="white")
@@ -335,12 +330,12 @@ with g1:
 
 with g2:
 
-    fig2, ax2 = plt.subplots(figsize=(7,4))
+    fig2, ax2 = plt.subplots(figsize=(6,3.5))
 
     ax2.scatter(
         data['RPM'],
         data['Temperature'],
-        s=80
+        s=60
     )
 
     ax2.set_facecolor("#050b18")
@@ -348,8 +343,7 @@ with g2:
 
     ax2.set_title(
         "Temperature vs RPM",
-        color="white",
-        fontsize=16
+        color="white"
     )
 
     ax2.set_xlabel("RPM", color="white")
@@ -383,7 +377,7 @@ def create_pdf(load, temp, rpm, oil, result):
 
     content.append(
         Paragraph(
-            "THERMOLYTIX AI REPORT",
+            "THERMOLYTIX REPORT",
             styles['Title']
         )
     )
