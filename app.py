@@ -13,14 +13,14 @@ st.set_page_config(page_title="Cooling Tower AI", layout="wide")
 # ===== BACKGROUND =====
 def set_bg():
     try:
-        with open("bg.jpg", "rb") as f:
+        with open("bg.png", "rb") as f:
             data = f.read()
         encoded = base64.b64encode(data).decode()
 
         st.markdown(f"""
         <style>
         .stApp {{
-            background-image: url("data:image/jpg;base64,{encoded}");
+            background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
         }}
 
