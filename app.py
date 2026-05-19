@@ -188,4 +188,4 @@ if st.button("📁 Download PDF Report"):
     pdf_file = create_pdf(load, temp, rpm, oil, pred_value)
 
     with open(pdf_file, "rb") as f:
-        st.download_button("Download Report", f, file_nam
+        st.download_button("Download Report"), f, file_nam
