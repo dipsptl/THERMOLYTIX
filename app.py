@@ -91,28 +91,6 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
     @media (max-width: 768px) {{
-        .header-top {{ flex-direction: column; text-align: center; }}
-        .logo-img {{ height: 60px; }}
-        .header-status {{ flex-direction: column; width: 100%; }}
-        .content-wrapper {{ padding: 1rem; }}
-    }}
-    /* shrink prediction summary */
-    .block h2 {{
-        font-size: 2.2rem !important;
-        margin: 0.2rem 0 0.5rem 0 !important;
-    }}
-
-    /* padding around sliders */
-    [data-testid="stSlider"] {{
-        padding: 0.4rem 1rem !important;
-    }}
-
-    /* fix download block empty space */
-    [data-testid="stVerticalBlock"] > div:has(.stDownloadButton) {{
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }}
-    @media (max-width: 768px) {{
     /* Header layout */
     .header-top {{ 
         flex-direction: row !important;
@@ -123,11 +101,11 @@ st.markdown(f"""
     
     /* Logo left side, medium size */
     .logo-img {{ 
-        height: 80px !important;
+        height: 90px !important;
         margin: 0 !important;
     }}
     
-    /* Logo container - column layout રાખો */
+    /* Logo container */
     .header-left {{
         display: flex !important;
         flex-direction: column !important;
@@ -136,31 +114,33 @@ st.markdown(f"""
         flex: 0 0 auto;
     }}
     
-    /* Subtitle logo નીચે, નાનો */
+    /* White text ખૂબ ખૂબ નાનો */
     .header-left > div {{
-        font-size: 0.55rem !important;
+        font-size: 0.3rem !important;
         text-align: left !important;
         padding-left: 5px !important;
-        max-width: 140px !important;
-        line-height: 1.2 !important;
+        max-width: 120px !important;
+        line-height: 1.1 !important;
+        opacity: 0.7 !important;
     }}
     
-    /* Green blocks ખૂબ નાના કરો */
+    /* Green blocks 3x મોટા */
     .header-status {{ 
-        flex-direction: row !important;
-        gap: 0.3rem !important;
+        flex-direction: column !important;
+        gap: 0.4rem !important;
         width: auto !important;
     }}
     
     .status-item {{
-        padding: 0.3rem 0.5rem !important;
-        font-size: 0.6rem !important;
-        border-radius: 4px !important;
+        padding: 0.5rem 0.8rem !important;
+        font-size: 0.45rem !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
     }}
     
     /* Header compact */
     .header-wrapper {{
-        padding: 0.5rem 0.8rem !important;
+        padding: 0.6rem 0.8rem !important;
     }}
     
     .content-wrapper {{ padding: 1rem; }}
