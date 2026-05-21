@@ -101,7 +101,7 @@ st.markdown(f"""
     
     /* Logo left side, medium size */
     .logo-img {{ 
-        height: 2300px !important;
+        height: 230px !important;
         margin: -15px 0 -15px -10px !important;
     }}
     
