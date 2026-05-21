@@ -101,8 +101,8 @@ st.markdown(f"""
     
     /* Logo left side, medium size */
     .logo-img {{ 
-        height: 230px !important;
-        margin: -15px 0 -15px -20px !important;
+        height: 190px !important;
+        margin: -8px 0 -8px -10px !important;
     }}
     
     /* Logo container */
@@ -116,9 +116,9 @@ st.markdown(f"""
     
     /* White text ખૂબ ખૂબ નાનો */
     .header-left > div {{
-        font-size: 0.4rem !important;
+        font-size: 0.5rem !important;
         text-align: left !important;
-        padding-left: 8px !important;
+        padding-left: 5px !important;
         max-width: 120px !important;
         line-height: 1.1 !important;
         opacity: 0.7 !important;
@@ -140,7 +140,7 @@ st.markdown(f"""
     
     /* Header compact */
     .header-wrapper {{
-        padding: 0.6rem 0.8rem !important;
+        padding: 0.2rem 0.6rem !important;
     }}
     
     .content-wrapper {{ padding: 1rem; }}
