@@ -112,6 +112,30 @@ st.markdown(f"""
         padding-top: 0 !important;
         margin-top: 0 !important;
     }}
+    @media (max-width: 768px) {{
+        .header-top {{ flex-direction: column; text-align: center; }}
+        .logo-img {{ height: 60px; }}
+        .header-status {{ flex-direction: column; width: 100%; }}
+        .content-wrapper {{ padding: 1rem; }}
+        
+        /* NEW: Mobile માં green blocks છુપાવો */
+        .header-status {{ 
+            display: none !important; 
+        }}
+        
+        /* NEW: Mobile માં logo center કરો */
+        .header-left {{
+            align-items: center !important;
+            width: 100%;
+        }}
+        
+        /* NEW: Logo size મોટો રાખો mobile માં */
+        .logo-img {{ 
+            height: 120px !important;
+            margin: 0 auto !important;
+        }}
+    }}
+
 </style>
 """, unsafe_allow_html=True)
 
