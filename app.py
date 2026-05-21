@@ -101,7 +101,7 @@ st.markdown(f"""
     
     /* Logo left side, medium size */
     .logo-img {{ 
-        height: 130px !important;
+        height: 180px !important;
         margin: 0 !important;
     }}
     
@@ -118,7 +118,7 @@ st.markdown(f"""
     .header-left > div {{
         font-size: 0.4rem !important;
         text-align: left !important;
-        padding-left: 5px !important;
+        padding-left: 6px !important;
         max-width: 120px !important;
         line-height: 1.1 !important;
         opacity: 0.7 !important;
