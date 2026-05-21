@@ -102,7 +102,7 @@ st.markdown(f"""
     /* Logo left side, medium size */
     .logo-img {{ 
         height: 190px !important;
-        margin: -8px 0 -8px -10px !important;
+        margin: -15px 0 -15px -20px !important;
     }}
     
     /* Logo container */
@@ -114,14 +114,15 @@ st.markdown(f"""
         flex: 0 0 auto;
     }}
     
-    /* White text ખૂબ ખૂબ નાનો */
-    .header-left > div {{
-        font-size: 0.5rem !important;
-        text-align: left !important;
-        padding-left: 5px !important;
-        max-width: 120px !important;
-        line-height: 1.1 !important;
-        opacity: 0.7 !important;
+   .header-left > div {{
+    font-size: 0.5rem !important;
+    text-align: left !important;
+    padding-left: 5px !important;
+    max-width: 200px !important;
+    line-height: 1.1 !important;
+    opacity: 0.7 !important;
+    margin-top: -5px !important;
+    white-space: nowrap !important;
     }}
     
     /* Green blocks 3x મોટા */
