@@ -113,29 +113,58 @@ st.markdown(f"""
         margin-top: 0 !important;
     }}
     @media (max-width: 768px) {{
-        .header-top {{ flex-direction: column; text-align: center; }}
-        .logo-img {{ height: 60px; }}
-        .header-status {{ flex-direction: column; width: 100%; }}
-        .content-wrapper {{ padding: 1rem; }}
-        
-        /* NEW: Mobile માં green blocks છુપાવો */
-        .header-status {{ 
-            display: none !important; 
-        }}
-        
-        /* NEW: Mobile માં logo center કરો */
-        .header-left {{
-            align-items: center !important;
-            width: 100%;
-        }}
-        
-        /* NEW: Logo size મોટો રાખો mobile માં */
-        .logo-img {{ 
-            height: 120px !important;
-            margin: 0 auto !important;
-        }}
+    /* Header layout */
+    .header-top {{ 
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
     }}
-
+    
+    /* Logo left side, medium size */
+    .logo-img {{ 
+        height: 80px !important;
+        margin: 0 !important;
+    }}
+    
+    /* Logo container - column layout રાખો */
+    .header-left {{
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: auto !important;
+        flex: 0 0 auto;
+    }}
+    
+    /* Subtitle logo નીચે, નાનો */
+    .header-left > div {{
+        font-size: 0.55rem !important;
+        text-align: left !important;
+        padding-left: 5px !important;
+        max-width: 140px !important;
+        line-height: 1.2 !important;
+    }}
+    
+    /* Green blocks ખૂબ નાના કરો */
+    .header-status {{ 
+        flex-direction: row !important;
+        gap: 0.3rem !important;
+        width: auto !important;
+    }}
+    
+    .status-item {{
+        padding: 0.3rem 0.5rem !important;
+        font-size: 0.6rem !important;
+        border-radius: 4px !important;
+    }}
+    
+    /* Header compact */
+    .header-wrapper {{
+        padding: 0.5rem 0.8rem !important;
+    }}
+    
+    .content-wrapper {{ padding: 1rem; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
