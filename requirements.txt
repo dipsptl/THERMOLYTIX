@@ -4,3 +4,4 @@ scikit-learn
 openai>=1.0.0
 matplotlib
 reportlab
+plotly
