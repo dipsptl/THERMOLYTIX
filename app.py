@@ -101,7 +101,7 @@ st.markdown(f"""
     
     /* Logo left side, medium size */
     .logo-img {{ 
-        height: 90px !important;
+        height: 130px !important;
         margin: 0 !important;
     }}
     
@@ -116,7 +116,7 @@ st.markdown(f"""
     
     /* White text ખૂબ ખૂબ નાનો */
     .header-left > div {{
-        font-size: 0.3rem !important;
+        font-size: 0.4rem !important;
         text-align: left !important;
         padding-left: 5px !important;
         max-width: 120px !important;
@@ -132,9 +132,9 @@ st.markdown(f"""
     }}
     
     .status-item {{
-        padding: 0.5rem 0.8rem !important;
-        font-size: 0.45rem !important;
-        border-radius: 6px !important;
+        padding: 0.2rem 0.5rem !important;
+        font-size: 0.30rem !important;
+        border-radius: 3px !important;
         white-space: nowrap !important;
     }}
     
