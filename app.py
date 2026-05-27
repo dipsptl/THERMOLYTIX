@@ -160,12 +160,12 @@ st.markdown(f"""
 <div class="header-wrapper"><div class="header-content"><div class="header-top">
     <div class="header-left">
         {logo_html}
-        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;">Thermal Intelligence for Gearbox Cooling Systems</div>
+        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
     </div>
     <div class="header-status">
-        <div class="status-item">✓ System Active</div>
-        <div class="status-item">✓ Sensors OK</div>
-        <div class="status-item">✓ Cooling Normal</div>
+        <div class="status-item">✓ XGBoost prediction</div>
+        <div class="status-item">✓ Sensors Data</div>
+        <div class="status-item">✓ Risk Detection</div>
     </div>
 </div></div></div>
 """, unsafe_allow_html=True)
