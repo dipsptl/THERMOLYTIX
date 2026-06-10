@@ -61,7 +61,7 @@ Input Parameters → ML Model → Temperature Prediction → Risk Analysis → D
 ---
 
 ## 🌐 Live Demo
-👉 https://thermolytix-gearbox-cooling-tower-ai-temperature-prediction.streamlit.app
+👉 https://thermolytix-gearbox-cooling-tower-ai-temperature-prediction.streamlit.app/
 
 ---
 
