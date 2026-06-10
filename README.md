@@ -12,7 +12,7 @@ It enables early detection of abnormal conditions and supports preventive mainte
 ---
 
 ## 📷 Dashboard Preview
-![Gearbox AI Dashboard] <img width="1079" height="802" alt="Cooling Tower Gear Temp  AI Dashboard" src="https://github.com/user-attachments/assets/e64cc407-950a-4523-851d-2fc3ea632234" />
+![Gearbox AI Dashboard] <img width="1536" height="1024" alt="thermolytix-layout" src="https://github.com/user-attachments/assets/fd0fc5bf-2b93-4c07-a061-883f4cfe401f" />
 
 *Real-time dashboard showing temperature prediction, system status, and performance insights.*
 
