@@ -53,7 +53,9 @@ This system:
 - Interactive dashboard visualization  
 - Maintenance insight generation  
 
+----
 📊 Presentation:
+
 [Thermolytix AI PPT] <img width="1152" height="648" alt="Thermolytix_Gearbox_Presentation pptx" src="https://github.com/user-attachments/assets/a524dd6f-35f8-4ec5-909a-cdb7f611f8b1" />
 
 
