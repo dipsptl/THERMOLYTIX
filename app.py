@@ -163,7 +163,7 @@ st.markdown(f"""
         <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
     </div>
     <div class="header-status">
-        <div class="status-item"> XGBoost prediction</div>
+        <div class="status-item"> Linear Predict</div>
         <div class="status-item"> Sensors Data</div>
         <div class="status-item"> Risk Detection</div>
     </div>
