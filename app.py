@@ -50,7 +50,7 @@ st.markdown(f"""
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
-        padding: 0.7rem 2rem;
+        padding: 0.7rem 2rem 0.8rem 2rem;
         margin: 0.8rem 1rem 1rem 1rem;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
@@ -62,7 +62,7 @@ st.markdown(f"""
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
     .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-status {{ display: flex; gap: 1rem; font-size: 0.85rem; }}
+    .header-status {{ display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; margin-top: 1.1rem; padding-top: 0.7rem; border-top: 1px solid rgba(255,165,0,0.15); }}
     .status-item {{
         display: flex; align-items: center; gap: 0.5rem;
         padding: 0.6rem 1.2rem; background: rgba(0,255,65,0.1);
@@ -114,17 +114,17 @@ st.markdown(f"""
     /* ── Login button (3D raised orange bevel, RIGHT side, inside header) ── */
     .st-key-login_btn {{
         position: absolute;
-        top: 18px;
+        top: 16px;
         right: 40px;
         z-index: 100;
     }}
     .st-key-login_btn button {{
         background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
-        color: white !important;
+        color: #000000 !important;
         border: 1px solid #b34700 !important;
-        border-radius: 10px !important; padding: 8px 22px !important;
-        font-weight: 700 !important; font-size: 0.95rem !important;
-        text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+        border-radius: 10px !important; padding: 10px 28px !important;
+        font-weight: 800 !important; font-size: 1.2rem !important;
+        text-shadow: none;
         box-shadow:
             inset 0 2px 1px rgba(255,255,255,0.55),
             inset 0 -3px 4px rgba(0,0,0,0.35),
@@ -170,17 +170,19 @@ except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
 st.markdown(f"""
-<div class="header-wrapper"><div class="header-content"><div class="header-top">
-    <div class="header-left">
-        {logo_html}
-        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
+<div class="header-wrapper"><div class="header-content">
+    <div class="header-top">
+        <div class="header-left">
+            {logo_html}
+            <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
+        </div>
     </div>
     <div class="header-status">
         <div class="status-item"> Linear Predict</div>
         <div class="status-item"> Sensors Data</div>
         <div class="status-item"> Risk Detection</div>
     </div>
-</div></div></div>
+</div></div>
 """, unsafe_allow_html=True)
 
 # ── LOAD MODEL ──
@@ -371,6 +373,7 @@ with col_title:
         </div>
     """, unsafe_allow_html=True)
 with col_btn:
+    st.markdown('<div style="margin-top:28px;"></div>', unsafe_allow_html=True)
     try:
         from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
         from reportlab.lib.styles import getSampleStyleSheet
