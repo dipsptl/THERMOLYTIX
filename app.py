@@ -36,18 +36,25 @@ st.markdown(f"""
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 130px; object-fit: contain;
+        height: 260px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -10px; margin-top: -5px; margin-bottom: -5px;
+        display: block; margin-left: -20px; margin-top: -15px; margin-bottom: -15px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
 
     /* ── Header block — 3D attractive style ── */
     .header-wrapper {{
-        background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(15,34,57,0.95) 100%);
-        border-bottom: 2px solid var(--border); padding: 0.5rem 2rem;
-        margin-bottom: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        background: linear-gradient(145deg, #0d1f36 0%, #142c47 50%, #0a1826 100%);
+        border: 1px solid rgba(255,165,0,0.2);
+        border-radius: 14px;
+        padding: 0.9rem 2rem;
+        margin: 0.4rem 1rem 1rem 1rem;
+        box-shadow:
+            0 10px 25px rgba(0,0,0,0.5),
+            0 2px 0 rgba(255,255,255,0.06) inset,
+            0 -5px 15px rgba(0,0,0,0.3) inset;
+        position: relative;
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
     .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
@@ -101,14 +108,14 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (3D raised orange bevel, sits inside header top-right) ── */
-    .login-wrap {{
+    /* ── Login button (3D raised orange bevel, LEFT side, inside header) ── */
+    .st-key-login_btn {{
         position: absolute;
-        top: 10px;
-        right: 40px;
+        top: 12px;
+        left: 40px;
         z-index: 100;
     }}
-    .login-wrap button {{
+    .st-key-login_btn button {{
         background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
         color: white !important;
         border: 1px solid #b34700 !important;
@@ -122,10 +129,10 @@ st.markdown(f"""
             0 2px 0 #b34700 !important;
         transition: all 0.12s ease;
     }}
-    .login-wrap button:hover {{
+    .st-key-login_btn button:hover {{
         background: linear-gradient(180deg, #ffc266 0%, #ff9d1a 45%, #ff6a00 100%) !important;
     }}
-    .login-wrap button:active {{
+    .st-key-login_btn button:active {{
         box-shadow:
             inset 0 2px 4px rgba(0,0,0,0.4),
             0 1px 2px rgba(0,0,0,0.4) !important;
@@ -145,13 +152,12 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# ── LOGIN BUTTON (absolutely positioned inside header block, top-right) ──
-st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
-if st.user.is_logged_in:
-    st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
-else:
-    st.button("Login", on_click=st.login)
-st.markdown('</div>', unsafe_allow_html=True)
+# ── LOGIN BUTTON (absolutely positioned inside header block, LEFT side) ──
+with st.container(key="login_btn"):
+    if st.user.is_logged_in:
+        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+    else:
+        st.button("Login", on_click=st.login)
 
 # ── HEADER ──
 try:
