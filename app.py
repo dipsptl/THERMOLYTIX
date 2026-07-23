@@ -28,7 +28,7 @@ st.markdown(f"""
     /* ── Top gap remove ── */
     #MainMenu {{visibility: hidden;}}
     header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
-    .block-container {{ padding-top: 0rem !important; padding-bottom: 1rem !important; position: relative; }}
+    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; }}
 
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
@@ -36,24 +36,27 @@ st.markdown(f"""
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 260px; object-fit: contain;
+        height: 170px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -20px; margin-top: -15px; margin-bottom: -15px;
+        display: block; margin-left: -10px; margin-top: -8px; margin-bottom: -8px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
 
     /* ── Header block — 3D attractive style ── */
     .header-wrapper {{
-        background: linear-gradient(145deg, #0d1f36 0%, #142c47 50%, #0a1826 100%);
-        border: 1px solid rgba(255,165,0,0.2);
+        background: linear-gradient(145deg, rgba(20,44,71,0.55) 0%, rgba(10,22,40,0.65) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
-        padding: 0.9rem 2rem;
-        margin: 0.4rem 1rem 1rem 1rem;
+        padding: 0.7rem 2rem;
+        margin: 0.8rem 1rem 1rem 1rem;
         box-shadow:
-            0 10px 25px rgba(0,0,0,0.5),
-            0 2px 0 rgba(255,255,255,0.06) inset,
-            0 -5px 15px rgba(0,0,0,0.3) inset;
+            0 8px 32px rgba(0,0,0,0.45),
+            0 0 20px rgba(255,165,0,0.12),
+            0 1px 0 rgba(255,255,255,0.15) inset,
+            0 -1px 0 rgba(0,0,0,0.3) inset;
         position: relative;
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
@@ -108,11 +111,11 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (3D raised orange bevel, LEFT side, inside header) ── */
+    /* ── Login button (3D raised orange bevel, RIGHT side, inside header) ── */
     .st-key-login_btn {{
         position: absolute;
-        top: 12px;
-        left: 40px;
+        top: 18px;
+        right: 40px;
         z-index: 100;
     }}
     .st-key-login_btn button {{
