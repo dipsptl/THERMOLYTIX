@@ -36,9 +36,9 @@ st.markdown(f"""
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 300px; object-fit: contain;
+        height: 130px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -30px; margin-top: -20px; margin-bottom: -20px;
+        display: block; margin-left: -10px; margin-top: -5px; margin-bottom: -5px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
@@ -46,7 +46,7 @@ st.markdown(f"""
     /* ── Header block — 3D attractive style ── */
     .header-wrapper {{
         background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(15,34,57,0.95) 100%);
-        border-bottom: 2px solid var(--border); padding: 0.8rem 2rem;
+        border-bottom: 2px solid var(--border); padding: 0.5rem 2rem;
         margin-bottom: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
@@ -101,32 +101,35 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (sits inside header block, top-right corner) ── */
+    /* ── Login button (3D raised orange bevel, sits inside header top-right) ── */
     .login-wrap {{
         position: absolute;
-        top: 14px;
+        top: 10px;
         right: 40px;
         z-index: 100;
     }}
     .login-wrap button {{
-        background: linear-gradient(135deg, #ff9a3d, #ff4500) !important;
-        color: white !important; border: none !important;
+        background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
+        color: white !important;
+        border: 1px solid #b34700 !important;
         border-radius: 10px !important; padding: 8px 22px !important;
         font-weight: 700 !important; font-size: 0.95rem !important;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.4);
         box-shadow:
-            0 0 14px rgba(255,120,0,0.7),
-            0 0 28px rgba(255,90,0,0.4),
-            0 4px 10px rgba(0,0,0,0.4),
-            inset 0 1px 0 rgba(255,255,255,0.35) !important;
-        transition: all 0.2s ease;
+            inset 0 2px 1px rgba(255,255,255,0.55),
+            inset 0 -3px 4px rgba(0,0,0,0.35),
+            0 5px 10px rgba(0,0,0,0.5),
+            0 2px 0 #b34700 !important;
+        transition: all 0.12s ease;
     }}
     .login-wrap button:hover {{
-        background: linear-gradient(135deg, #ffab5c, #ff5a1a) !important;
+        background: linear-gradient(180deg, #ffc266 0%, #ff9d1a 45%, #ff6a00 100%) !important;
+    }}
+    .login-wrap button:active {{
         box-shadow:
-            0 0 20px rgba(255,140,0,0.9),
-            0 0 36px rgba(255,100,0,0.5),
-            0 4px 10px rgba(0,0,0,0.4),
-            inset 0 1px 0 rgba(255,255,255,0.4) !important;
+            inset 0 2px 4px rgba(0,0,0,0.4),
+            0 1px 2px rgba(0,0,0,0.4) !important;
+        transform: translateY(2px);
     }}
 
     @media (max-width: 768px) {{
