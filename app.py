@@ -28,7 +28,7 @@ st.markdown(f"""
     /* ── Top gap remove ── */
     #MainMenu {{visibility: hidden;}}
     header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
-    .block-container {{ padding-top: 0.5rem !important; padding-bottom: 1rem !important; }}
+    .block-container {{ padding-top: 0rem !important; padding-bottom: 1rem !important; position: relative; }}
 
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
@@ -45,22 +45,9 @@ st.markdown(f"""
 
     /* ── Header block — 3D attractive style ── */
     .header-wrapper {{
-        background: linear-gradient(145deg, #0d1f36 0%, #142c47 50%, #0a1826 100%);
-        border: 1px solid rgba(255,165,0,0.25);
-        border-radius: 16px;
-        padding: 1.4rem 2.2rem;
-        margin: 0.5rem 1rem 1.2rem 1rem;
-        box-shadow:
-            0 12px 30px rgba(0,0,0,0.55),
-            0 2px 0 rgba(255,255,255,0.06) inset,
-            0 -6px 20px rgba(0,0,0,0.35) inset;
-        position: relative;
-        overflow: hidden;
-    }}
-    .header-wrapper::before {{
-        content: "";
-        position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, #FFA500, #00D4FF, #FFA500);
+        background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(15,34,57,0.95) 100%);
+        border-bottom: 2px solid var(--border); padding: 0.8rem 2rem;
+        margin-bottom: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
     .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
@@ -68,16 +55,9 @@ st.markdown(f"""
     .header-status {{ display: flex; gap: 1rem; font-size: 0.85rem; }}
     .status-item {{
         display: flex; align-items: center; gap: 0.5rem;
-        padding: 0.7rem 1.4rem;
-        background: linear-gradient(145deg, rgba(0,255,65,0.15), rgba(0,255,65,0.05));
-        border: 1px solid var(--success);
-        border-radius: 10px;
-        color: var(--success); font-weight: 700;
-        box-shadow: 0 4px 10px rgba(0,255,65,0.15), 0 1px 0 rgba(255,255,255,0.1) inset;
-        transition: transform 0.2s ease;
-    }}
-    .status-item:hover {{
-        transform: translateY(-2px);
+        padding: 0.6rem 1.2rem; background: rgba(0,255,65,0.1);
+        border: 1px solid var(--success); border-radius: 6px;
+        color: var(--success); font-weight: 600;
     }}
 
     .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
@@ -121,15 +101,33 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (right corner, orange 3D style) ── */
-    .login-wrap button {{
-        background: linear-gradient(135deg, #ff7a1a, #ff3300) !important;
-        color: white !important; border: none !important;
-        border-radius: 8px !important; padding: 8px 22px !important;
-        font-weight: 700 !important;
-        box-shadow: 0 4px 12px rgba(255,90,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+    /* ── Login button (sits inside header block, top-right corner) ── */
+    .login-wrap {{
+        position: absolute;
+        top: 14px;
+        right: 40px;
+        z-index: 100;
     }}
-    .login-wrap button:hover {{ background: linear-gradient(135deg, #ff8f3d, #e63d00) !important; }}
+    .login-wrap button {{
+        background: linear-gradient(135deg, #ff9a3d, #ff4500) !important;
+        color: white !important; border: none !important;
+        border-radius: 10px !important; padding: 8px 22px !important;
+        font-weight: 700 !important; font-size: 0.95rem !important;
+        box-shadow:
+            0 0 14px rgba(255,120,0,0.7),
+            0 0 28px rgba(255,90,0,0.4),
+            0 4px 10px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.35) !important;
+        transition: all 0.2s ease;
+    }}
+    .login-wrap button:hover {{
+        background: linear-gradient(135deg, #ffab5c, #ff5a1a) !important;
+        box-shadow:
+            0 0 20px rgba(255,140,0,0.9),
+            0 0 36px rgba(255,100,0,0.5),
+            0 4px 10px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.4) !important;
+    }}
 
     @media (max-width: 768px) {{
     .header-top {{ flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 0.5rem !important; }}
@@ -144,15 +142,13 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# ── LOGIN BUTTON (top-right, normal flow, orange 3D style) ──
-col_l, col_r = st.columns([6, 1])
-with col_r:
-    st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
-    if st.user.is_logged_in:
-        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
-    else:
-        st.button("Login with Google", on_click=st.login)
-    st.markdown('</div>', unsafe_allow_html=True)
+# ── LOGIN BUTTON (absolutely positioned inside header block, top-right) ──
+st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
+if st.user.is_logged_in:
+    st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+else:
+    st.button("Login", on_click=st.login)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ── HEADER ──
 try:
