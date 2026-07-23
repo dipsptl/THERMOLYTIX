@@ -36,7 +36,7 @@ st.markdown(f"""
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 300px; object-fit: contain;
+        height: 330px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
         display: block; margin-left: -30px; margin-top: -80px; margin-bottom: -70px;
     }}
@@ -60,14 +60,15 @@ st.markdown(f"""
         position: relative;
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
-    .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
+    .header-top {{ display: flex; justify-content: space-between; align-items: stretch; gap: 1rem; }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-status {{ display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; margin-top: 1.1rem; padding-top: 0.7rem; border-top: 1px solid rgba(255,165,0,0.15); }}
+    .header-right {{ display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 0.5rem; }}
+    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: 0; padding-top: 0.5rem; border-top: 1px solid rgba(255,165,0,0.15); }}
     .status-item {{
-        display: flex; align-items: center; gap: 0.5rem;
-        padding: 0.6rem 1.2rem; background: rgba(0,255,65,0.1);
+        display: flex; align-items: center; gap: 0.4rem;
+        padding: 0.35rem 0.75rem; background: rgba(0,255,65,0.1);
         border: 1px solid var(--success); border-radius: 6px;
-        color: var(--success); font-weight: 600;
+        color: var(--success); font-weight: 600; font-size: 0.72rem;
     }}
 
     .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
@@ -111,12 +112,11 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (3D raised orange bevel, RIGHT side, inside header) ── */
+    /* ── Login button (3D raised orange bevel, top-right corner, inside header) ── */
     .st-key-login_btn {{
-        position: absolute;
-        top: 16px;
-        right: 40px;
-        z-index: 100;
+        width: fit-content;
+        margin-left: auto;
+        margin-bottom: 0;
     }}
     .st-key-login_btn button {{
         background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
@@ -144,9 +144,11 @@ st.markdown(f"""
 
     @media (max-width: 768px) {{
     .header-top {{ flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 0.5rem !important; }}
-    .logo-img {{ height: 210px !important; margin: -20px 0 -20px -25px !important; }}
+    .logo-img {{ height: 230px !important; margin: -20px 0 -20px -25px !important; }}
     .header-left {{ display: flex !important; flex-direction: column !important; align-items: flex-start !important; width: auto !important; flex: 0 0 auto; }}
     .header-left > div {{ font-size: 0.5rem !important; text-align: left !important; padding-left: 5px !important; max-width: 200px !important; line-height: 1.1 !important; opacity: 0.7 !important; margin-top: -5px !important; white-space: nowrap !important; }}
+    .header-right {{ align-items: flex-end !important; justify-content: space-between !important; gap: 0.3rem !important; }}
+    .st-key-login_btn button {{ padding: 4px 14px !important; font-size: 0.65rem !important; border-radius: 6px !important; }}
     .header-status {{ flex-direction: column !important; gap: 0.4rem !important; width: auto !important; }}
     .status-item {{ padding: 0.2rem 0.5rem !important; font-size: 0.30rem !important; border-radius: 3px !important; white-space: nowrap !important; }}
     .header-wrapper {{ padding: 0.2rem 0.6rem !important; }}
@@ -155,13 +157,6 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# ── LOGIN BUTTON (absolutely positioned inside header block, LEFT side) ──
-with st.container(key="login_btn"):
-    if st.user.is_logged_in:
-        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
-    else:
-        st.button("Login", on_click=st.login)
-
 # ── HEADER ──
 try:
     logo_base64 = get_base64_image("logo.png")
@@ -169,16 +164,31 @@ try:
 except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
+# header opens here, then wraps around the native login button below,
+# then closes — this keeps the button truly *inside* the header block
+# (top-right corner, opposite the logo) instead of floating outside it.
 st.markdown(f"""
 <div class="header-wrapper"><div class="header-content"><div class="header-top">
     <div class="header-left">
         {logo_html}
         <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
     </div>
-    <div class="header-status">
-        <div class="status-item"> Linear Predict</div>
-        <div class="status-item"> Sensors Data</div>
-        <div class="status-item"> Risk Detection</div>
+    <div class="header-right">
+""", unsafe_allow_html=True)
+
+# ── LOGIN BUTTON (top-right corner, inside header block) ──
+with st.container(key="login_btn"):
+    if st.user.is_logged_in:
+        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+    else:
+        st.button("Login", on_click=st.login)
+
+st.markdown("""
+        <div class="header-status">
+            <div class="status-item"> Linear Predict</div>
+            <div class="status-item"> Sensors Data</div>
+            <div class="status-item"> Risk Detection</div>
+        </div>
     </div>
 </div></div></div>
 """, unsafe_allow_html=True)
