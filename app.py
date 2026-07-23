@@ -1,33 +1,4 @@
 import streamlit as st
-
-# Custom CSS for login button styling
-st.markdown("""
-<style>
-div[data-testid="stButton"] > button {
-    background-color: #ff6b1a;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-weight: 600;
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    z-index: 9999;
-}
-div[data-testid="stButton"] > button:hover {
-    background-color: #e55a0a;
-    color: white;
-}
-</style>
-""", unsafe_allow_html=True)
-
-if st.user.is_logged_in:
-    st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
-else:
-    st.button("Login with Google", on_click=st.login)
-
-# --- tara baki nu original header/code ahiya thi shuru thay che ---
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
@@ -43,6 +14,7 @@ def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode("utf-8")
 
+# set_page_config must be the very first Streamlit command
 st.set_page_config(page_title="Thermolytix", page_icon="🌡️", layout="wide", initial_sidebar_state="collapsed")
 
 try:
@@ -53,6 +25,11 @@ except FileNotFoundError:
 
 st.markdown(f"""
 <style>
+    /* ── Top gap remove ── */
+    #MainMenu {{visibility: hidden;}}
+    header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
+    .block-container {{ padding-top: 0.5rem !important; padding-bottom: 1rem !important; }}
+
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
         --warning: #FFB700; --danger: #FF3333; --dark-bg: #0A1628;
@@ -61,14 +38,29 @@ st.markdown(f"""
     .logo-img {{
         height: 300px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -30px; margin-top: -80px; margin-bottom: -70px;
+        display: block; margin-left: -30px; margin-top: -20px; margin-bottom: -20px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
+
+    /* ── Header block — 3D attractive style ── */
     .header-wrapper {{
-        background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(15,34,57,0.95) 100%);
-        border-bottom: 2px solid var(--border); padding: 0.8rem 2rem;
-        margin-bottom: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        background: linear-gradient(145deg, #0d1f36 0%, #142c47 50%, #0a1826 100%);
+        border: 1px solid rgba(255,165,0,0.25);
+        border-radius: 16px;
+        padding: 1.4rem 2.2rem;
+        margin: 0.5rem 1rem 1.2rem 1rem;
+        box-shadow:
+            0 12px 30px rgba(0,0,0,0.55),
+            0 2px 0 rgba(255,255,255,0.06) inset,
+            0 -6px 20px rgba(0,0,0,0.35) inset;
+        position: relative;
+        overflow: hidden;
+    }}
+    .header-wrapper::before {{
+        content: "";
+        position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, #FFA500, #00D4FF, #FFA500);
     }}
     .header-content {{ max-width: 2200px; margin: 0 auto; }}
     .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
@@ -76,10 +68,18 @@ st.markdown(f"""
     .header-status {{ display: flex; gap: 1rem; font-size: 0.85rem; }}
     .status-item {{
         display: flex; align-items: center; gap: 0.5rem;
-        padding: 0.6rem 1.2rem; background: rgba(0,255,65,0.1);
-        border: 1px solid var(--success); border-radius: 6px;
-        color: var(--success); font-weight: 600;
+        padding: 0.7rem 1.4rem;
+        background: linear-gradient(145deg, rgba(0,255,65,0.15), rgba(0,255,65,0.05));
+        border: 1px solid var(--success);
+        border-radius: 10px;
+        color: var(--success); font-weight: 700;
+        box-shadow: 0 4px 10px rgba(0,255,65,0.15), 0 1px 0 rgba(255,255,255,0.1) inset;
+        transition: transform 0.2s ease;
     }}
+    .status-item:hover {{
+        transform: translateY(-2px);
+    }}
+
     .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
     .block {{
         background: linear-gradient(135deg, rgba(17,30,48,0.92) 0%, rgba(30,58,82,0.7) 100%);
@@ -120,64 +120,39 @@ st.markdown(f"""
         border: none !important; border-radius: 8px !important;
         padding: 0.5rem 1.5rem !important;
     }}
+
+    /* ── Login button (right corner, orange 3D style) ── */
+    .login-wrap button {{
+        background: linear-gradient(135deg, #ff7a1a, #ff3300) !important;
+        color: white !important; border: none !important;
+        border-radius: 8px !important; padding: 8px 22px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 12px rgba(255,90,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+    }}
+    .login-wrap button:hover {{ background: linear-gradient(135deg, #ff8f3d, #e63d00) !important; }}
+
     @media (max-width: 768px) {{
-    /* Header layout */
-    .header-top {{ 
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-    }}
-    
-    /* Logo left side, medium size */
-    .logo-img {{ 
-        height: 210px !important;
-        margin: -20px 0 -20px -25px !important;
-    }}
-    
-    /* Logo container */
-    .header-left {{
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        width: auto !important;
-        flex: 0 0 auto;
-    }}
-    
-   .header-left > div {{
-    font-size: 0.5rem !important;
-    text-align: left !important;
-    padding-left: 5px !important;
-    max-width: 200px !important;
-    line-height: 1.1 !important;
-    opacity: 0.7 !important;
-    margin-top: -5px !important;
-    white-space: nowrap !important;
-    }}
-    
-    /* Green blocks 3x મોટા */
-    .header-status {{ 
-        flex-direction: column !important;
-        gap: 0.4rem !important;
-        width: auto !important;
-    }}
-    
-    .status-item {{
-        padding: 0.2rem 0.5rem !important;
-        font-size: 0.30rem !important;
-        border-radius: 3px !important;
-        white-space: nowrap !important;
-    }}
-    
-    /* Header compact */
-    .header-wrapper {{
-        padding: 0.2rem 0.6rem !important;
-    }}
-    
+    .header-top {{ flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 0.5rem !important; }}
+    .logo-img {{ height: 210px !important; margin: -20px 0 -20px -25px !important; }}
+    .header-left {{ display: flex !important; flex-direction: column !important; align-items: flex-start !important; width: auto !important; flex: 0 0 auto; }}
+    .header-left > div {{ font-size: 0.5rem !important; text-align: left !important; padding-left: 5px !important; max-width: 200px !important; line-height: 1.1 !important; opacity: 0.7 !important; margin-top: -5px !important; white-space: nowrap !important; }}
+    .header-status {{ flex-direction: column !important; gap: 0.4rem !important; width: auto !important; }}
+    .status-item {{ padding: 0.2rem 0.5rem !important; font-size: 0.30rem !important; border-radius: 3px !important; white-space: nowrap !important; }}
+    .header-wrapper {{ padding: 0.2rem 0.6rem !important; }}
     .content-wrapper {{ padding: 1rem; }}
-}}
+    }}
 </style>
 """, unsafe_allow_html=True)
+
+# ── LOGIN BUTTON (top-right, normal flow, orange 3D style) ──
+col_l, col_r = st.columns([6, 1])
+with col_r:
+    st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
+    if st.user.is_logged_in:
+        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+    else:
+        st.button("Login with Google", on_click=st.login)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ── HEADER ──
 try:
@@ -249,11 +224,10 @@ else:
     status_bg, status_border, status_dot, status_text, status_color, status_label = \
         "rgba(0,255,65,0.1)", "#00FF41", "🟢", "Safe", "#00FF41", "NORMAL"
 
-# BLOCK 2: PREDICTION SUMMARY — temp + status only (like old code)
+# BLOCK 2: PREDICTION SUMMARY
 st.markdown(f"""
 <div class="block">
     <div class="block-title">📊 Prediction Summary</div>
-    # change this line in BLOCK 2:
     <h2 style="color:white;margin:0.3rem 0 0.6rem 0;font-size:2rem;font-weight:900;">
         {pred_temp} <span style="font-size:1.2rem;color:#B0B8C1;">°C</span>
     </h2>
@@ -264,7 +238,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# BLOCK 3: SUGGESTIONS — only relevant ones (like old code)
+# BLOCK 3: SUGGESTIONS
 suggestions = []
 if rpm_val > 1500:
     suggestions.append(("⚠️", "Reduce RPM to control heat buildup."))
@@ -388,10 +362,6 @@ with col_title:
             </div>
         </div>
     """, unsafe_allow_html=True)
-with col_btn:
-    st.markdown('<div style="padding-top:0.6rem;">', unsafe_allow_html=True)
-    # ... keep existing download button code here ...
-    st.markdown('</div>', unsafe_allow_html=True)
 with col_btn:
     try:
         from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
