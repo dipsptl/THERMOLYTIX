@@ -1,13 +1,13 @@
-import streamlit as st
+iimport streamlit as st
 
-if not st.experimental_user.is_logged_in:
+if not st.user.is_logged_in:
     st.button("Login with Google", on_click=st.login)
     st.stop()
 
 st.button("Logout", on_click=st.logout)
-st.write(f"Welcome {st.experimental_user.name}!")
+st.write(f"Welcome {st.user.name}!")
 
-# --- tara baki nu original code ahiya thi shuru thay ---
+# --- tara baki nu original code ahiya thi shuru thay che ---
 
 import pandas as pd
 import numpy as np
