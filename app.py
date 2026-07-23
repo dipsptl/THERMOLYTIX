@@ -114,7 +114,8 @@ st.markdown(f"""
     /* ── Login button (flat 2D style, snug in the top-right corner, inside header) ── */
     .st-key-login_btn {{
         display: flex;
-        justify-content: flex-end;
+        flex-direction: column;
+        align-items: flex-end;
         margin: -0.2rem -0.6rem 0 0;
     }}
     .st-key-login_btn button {{
