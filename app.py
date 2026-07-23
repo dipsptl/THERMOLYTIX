@@ -170,19 +170,17 @@ except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
 st.markdown(f"""
-<div class="header-wrapper"><div class="header-content">
-    <div class="header-top">
-        <div class="header-left">
-            {logo_html}
-            <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
-        </div>
+<div class="header-wrapper"><div class="header-content"><div class="header-top">
+    <div class="header-left">
+        {logo_html}
+        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
     </div>
     <div class="header-status">
         <div class="status-item"> Linear Predict</div>
         <div class="status-item"> Sensors Data</div>
         <div class="status-item"> Risk Detection</div>
     </div>
-</div></div>
+</div></div></div>
 """, unsafe_allow_html=True)
 
 # ── LOAD MODEL ──
