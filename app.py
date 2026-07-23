@@ -129,8 +129,8 @@ st.markdown(f"""
     }}
     .st-key-login_btn button p {{
         font-size: 1.15rem !important;
-        font-weight: 800 !important;
-        line-height: 0.2 !important;
+        font-weight: 400 !important;
+        line-height: 0.6 !important;
         margin: 0 !important;
     }}
     .st-key-login_btn button:hover {{
