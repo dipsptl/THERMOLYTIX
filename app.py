@@ -123,12 +123,12 @@ st.markdown(f"""
         color: #000000 !important;
         border: none !important;
         border-radius: 8px !important;
-        padding: 0.25rem 0.9rem !important;
+        padding: 0.15rem 0.6rem !important;
         font-weight: 800 !important; font-size: 1.15rem !important;
         box-shadow: none !important;
     }}
     .st-key-login_btn button p {{
-        font-size: 1.15rem !important;
+        font-size: 0.9rem !important;
         font-weight: 400 !important;
         line-height: 0.6 !important;
         margin: 0 !important;
