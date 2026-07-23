@@ -123,8 +123,8 @@ st.markdown(f"""
         color: #000000 !important;
         border: none !important;
         border-radius: 8px !important;
-        padding: 0.08rem 0.7rem !important;
-        font-weight: 800 !important; font-size: 1.9rem !important;
+        padding: 0.03rem 0.9rem !important;
+        font-weight: 800 !important; font-size: 2.6rem !important;
         box-shadow: none !important;
     }}
     .st-key-login_btn button:hover {{
