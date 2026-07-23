@@ -1,13 +1,17 @@
 import streamlit as st
 
-if not st.user.is_logged_in:
-    st.button("Login with Google", on_click=st.login)
-    st.stop()
+# Login optional - upar corner ma bas ek button
+col1, col2 = st.columns([4,1])
+with col2:
+    if st.user.is_logged_in:
+        st.write(f"Hi, {st.user.name}")
+        st.button("Logout", on_click=st.logout)
+    else:
+        st.button("Login (optional)", on_click=st.login)
 
-st.button("Logout", on_click=st.logout)
-st.write(f"Welcome {st.user.name}!")
-
-# --- tara baki nu original code ahiya thi shuru thay che ---
+# --- Baki nu app hamesha chalu rehse, login vagar j ---
+st.title("Thermolytix")
+# ... tara original code ...
 
 import pandas as pd
 import numpy as np
