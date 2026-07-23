@@ -53,8 +53,8 @@ st.markdown(f"""
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
-        padding: 0.7rem 1.4rem 0.6rem 1.8rem;
-        margin: 0.8rem 1rem 1rem 1rem;
+        padding: 0.7rem 1.4rem 1.1rem 1.8rem;
+        margin: 1.2rem 1rem 1rem 1rem;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
             0 0 28px rgba(255,165,0,0.18),
@@ -62,7 +62,7 @@ st.markdown(f"""
             0 -1px 0 rgba(0,0,0,0.3) inset;
     }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: -1.4rem; }}
+    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: -1.8rem; }}
     .status-item {{
         display: flex; align-items: center; gap: 0.4rem;
         padding: 0.35rem 0.75rem; background: rgba(0,255,65,0.1);
