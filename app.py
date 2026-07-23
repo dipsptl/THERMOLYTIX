@@ -111,33 +111,24 @@ st.markdown(f"""
         padding: 0.5rem 1.5rem !important;
     }}
 
-    /* ── Login button (3D raised orange bevel, top-right corner, inside header) ── */
+    /* ── Login button (flat 2D style, snug in the top-right corner, inside header) ── */
     .st-key-login_btn {{
         display: flex;
         justify-content: flex-end;
+        margin: -0.2rem -0.6rem 0 0;
     }}
     .st-key-login_btn button {{
-        background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
+        background: linear-gradient(135deg, #FFA500, #FF6B00) !important;
         color: #000000 !important;
-        border: 1px solid #b34700 !important;
-        border-radius: 10px !important; padding: 10px 28px !important;
-        font-weight: 800 !important; font-size: 1.2rem !important;
-        text-shadow: none;
-        box-shadow:
-            inset 0 2px 1px rgba(255,255,255,0.55),
-            inset 0 -3px 4px rgba(0,0,0,0.35),
-            0 5px 10px rgba(0,0,0,0.5),
-            0 2px 0 #b34700 !important;
-        transition: all 0.12s ease;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.3rem 1rem !important;
+        font-weight: 800 !important; font-size: 1.05rem !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
     }}
     .st-key-login_btn button:hover {{
-        background: linear-gradient(180deg, #ffc266 0%, #ff9d1a 45%, #ff6a00 100%) !important;
+        filter: brightness(1.08);
     }}
-    .st-key-login_btn button:active {{
-        box-shadow:
-            inset 0 2px 4px rgba(0,0,0,0.4),
-            0 1px 2px rgba(0,0,0,0.4) !important;
-        transform: translateY(2px);
     }}
 
     @media (max-width: 768px) {{
@@ -165,8 +156,8 @@ except FileNotFoundError:
 # Everything below is rendered *inside* one real st.container, so the
 # native login button genuinely lives inside the header block in the DOM
 # (top row: logo | login button — status pills row sits under that).
-with st.container(key="header_block"):
-    col_logo, col_login = st.columns([5, 1], vertical_alignment="top")
+with st.container(key="header_block", gap=None):
+    col_logo, col_login = st.columns([5, 1], gap=None, vertical_alignment="top")
     with col_logo:
         st.markdown(f"""
             <div class="header-left">
