@@ -43,8 +43,11 @@ st.markdown(f"""
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
 
-    /* ── Header block — 3D attractive style ── */
-    .header-wrapper {{
+    /* ── Header block — 3D attractive style ──
+       This is now a real st.container(key="header_block"), so the login
+       button (a native st.button) can actually live inside it in the DOM,
+       instead of a hand-written <div> that widgets can't be nested into. */
+    .st-key-header_block {{
         background: linear-gradient(145deg, rgba(20,44,71,0.55) 0%, rgba(10,22,40,0.65) 100%);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -57,13 +60,9 @@ st.markdown(f"""
             0 0 28px rgba(255,165,0,0.18),
             0 1px 0 rgba(255,255,255,0.15) inset,
             0 -1px 0 rgba(0,0,0,0.3) inset;
-        position: relative;
     }}
-    .header-content {{ max-width: 2200px; margin: 0 auto; }}
-    .header-top {{ display: flex; justify-content: space-between; align-items: stretch; gap: 1rem; }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-right {{ display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 0.5rem; }}
-    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: 0; padding-top: 0.5rem; border-top: 1px solid rgba(255,165,0,0.15); }}
+    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: 0.8rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,165,0,0.15); }}
     .status-item {{
         display: flex; align-items: center; gap: 0.4rem;
         padding: 0.35rem 0.75rem; background: rgba(0,255,65,0.1);
@@ -114,9 +113,8 @@ st.markdown(f"""
 
     /* ── Login button (3D raised orange bevel, top-right corner, inside header) ── */
     .st-key-login_btn {{
-        width: fit-content;
-        margin-left: auto;
-        margin-bottom: 0;
+        display: flex;
+        justify-content: flex-end;
     }}
     .st-key-login_btn button {{
         background: linear-gradient(180deg, #ffb347 0%, #ff8c00 45%, #e65c00 100%) !important;
@@ -143,15 +141,15 @@ st.markdown(f"""
     }}
 
     @media (max-width: 768px) {{
-    .header-top {{ flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 0.5rem !important; }}
+    .st-key-header_block [data-testid="stHorizontalBlock"] {{ flex-wrap: nowrap !important; gap: 0.5rem !important; }}
+    .st-key-header_block [data-testid="column"] {{ width: auto !important; flex: unset !important; min-width: 0 !important; }}
     .logo-img {{ height: 230px !important; margin: -20px 0 -20px -25px !important; }}
     .header-left {{ display: flex !important; flex-direction: column !important; align-items: flex-start !important; width: auto !important; flex: 0 0 auto; }}
     .header-left > div {{ font-size: 0.5rem !important; text-align: left !important; padding-left: 5px !important; max-width: 200px !important; line-height: 1.1 !important; opacity: 0.7 !important; margin-top: -5px !important; white-space: nowrap !important; }}
-    .header-right {{ align-items: flex-end !important; justify-content: space-between !important; gap: 0.3rem !important; }}
     .st-key-login_btn button {{ padding: 4px 14px !important; font-size: 0.65rem !important; border-radius: 6px !important; }}
-    .header-status {{ flex-direction: column !important; gap: 0.4rem !important; width: auto !important; }}
+    .header-status {{ flex-direction: column !important; align-items: flex-end !important; gap: 0.4rem !important; width: auto !important; }}
     .status-item {{ padding: 0.2rem 0.5rem !important; font-size: 0.30rem !important; border-radius: 3px !important; white-space: nowrap !important; }}
-    .header-wrapper {{ padding: 0.2rem 0.6rem !important; }}
+    .st-key-header_block {{ padding: 0.2rem 0.6rem !important; }}
     .content-wrapper {{ padding: 1rem; }}
     }}
 </style>
@@ -164,34 +162,32 @@ try:
 except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
-# header opens here, then wraps around the native login button below,
-# then closes — this keeps the button truly *inside* the header block
-# (top-right corner, opposite the logo) instead of floating outside it.
-st.markdown(f"""
-<div class="header-wrapper"><div class="header-content"><div class="header-top">
-    <div class="header-left">
-        {logo_html}
-        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
-    </div>
-    <div class="header-right">
-""", unsafe_allow_html=True)
+# Everything below is rendered *inside* one real st.container, so the
+# native login button genuinely lives inside the header block in the DOM
+# (top row: logo | login button — status pills row sits under that).
+with st.container(key="header_block"):
+    col_logo, col_login = st.columns([5, 1], vertical_alignment="top")
+    with col_logo:
+        st.markdown(f"""
+            <div class="header-left">
+                {logo_html}
+                <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
+            </div>
+        """, unsafe_allow_html=True)
+    with col_login:
+        with st.container(key="login_btn"):
+            if st.user.is_logged_in:
+                st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+            else:
+                st.button("Login", on_click=st.login)
 
-# ── LOGIN BUTTON (top-right corner, inside header block) ──
-with st.container(key="login_btn"):
-    if st.user.is_logged_in:
-        st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
-    else:
-        st.button("Login", on_click=st.login)
-
-st.markdown("""
+    st.markdown("""
         <div class="header-status">
             <div class="status-item"> Linear Predict</div>
             <div class="status-item"> Sensors Data</div>
             <div class="status-item"> Risk Detection</div>
         </div>
-    </div>
-</div></div></div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ── LOAD MODEL ──
 @st.cache_resource
