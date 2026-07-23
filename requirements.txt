@@ -5,3 +5,4 @@ openai>=1.0.0
 matplotlib
 reportlab
 plotly
+authlib>=1.3.2
