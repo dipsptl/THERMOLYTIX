@@ -1,4 +1,14 @@
 import streamlit as st
+
+if not st.experimental_user.is_logged_in:
+    st.button("Login with Google", on_click=st.login)
+    st.stop()
+
+st.button("Logout", on_click=st.logout)
+st.write(f"Welcome {st.experimental_user.name}!")
+
+# --- tara baki nu original code ahiya thi shuru thay ---
+
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
@@ -6,6 +16,7 @@ from sklearn.linear_model import LinearRegression
 from datetime import datetime
 import base64
 import os
+
 
 def get_base64_image(image_path):
     if not os.path.exists(image_path):
