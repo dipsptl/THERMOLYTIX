@@ -53,7 +53,7 @@ st.markdown(f"""
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
-        padding: 0.5rem 1.4rem 1.8rem 1.8rem;
+        padding: 0.7rem 1.4rem 1.5rem 1.8rem;
         margin: 1.2rem 1rem 1rem 1rem;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
@@ -126,6 +126,12 @@ st.markdown(f"""
         padding: 0.03rem 0.9rem !important;
         font-weight: 800 !important; font-size: 2.6rem !important;
         box-shadow: none !important;
+    }}
+    .st-key-login_btn button p {{
+        font-size: 2.6rem !important;
+        font-weight: 800 !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
     }}
     .st-key-login_btn button:hover {{
         filter: brightness(1.08);
