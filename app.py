@@ -1,4 +1,4 @@
-iimport streamlit as st
+import streamlit as st
 
 if not st.user.is_logged_in:
     st.button("Login with Google", on_click=st.login)
