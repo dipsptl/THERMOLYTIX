@@ -54,7 +54,7 @@ st.markdown(f"""
         border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
         padding: 0.7rem 1.4rem 0.6rem 1.8rem;
-        margin: 1rem 1rem 1rem 1rem;
+        margin: 0.8rem 1rem 1rem 1rem;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
             0 0 28px rgba(255,165,0,0.18),
@@ -62,7 +62,7 @@ st.markdown(f"""
             0 -1px 0 rgba(0,0,0,0.3) inset;
     }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: -0.9rem; }}
+    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: -1.4rem; }}
     .status-item {{
         display: flex; align-items: center; gap: 0.4rem;
         padding: 0.35rem 0.75rem; background: rgba(0,255,65,0.1);
@@ -123,9 +123,9 @@ st.markdown(f"""
         color: #000000 !important;
         border: none !important;
         border-radius: 8px !important;
-        padding: 0.2rem 0.8rem !important;
-        font-weight: 800 !important; font-size: 1.66rem !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+        padding: 0.2rem 0.7rem !important;
+        font-weight: 800 !important; font-size: 1.4rem !important;
+        box-shadow: none !important;
     }}
     .st-key-login_btn button:hover {{
         filter: brightness(1.08);
