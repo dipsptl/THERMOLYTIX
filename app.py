@@ -36,9 +36,9 @@ st.markdown(f"""
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 170px; object-fit: contain;
+        height: 300px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -10px; margin-top: -8px; margin-bottom: -8px;
+        display: block; margin-left: -30px; margin-top: -80px; margin-bottom: -70px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
@@ -54,7 +54,7 @@ st.markdown(f"""
         margin: 0.8rem 1rem 1rem 1rem;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
-            0 0 20px rgba(255,165,0,0.12),
+            0 0 28px rgba(255,165,0,0.18),
             0 1px 0 rgba(255,255,255,0.15) inset,
             0 -1px 0 rgba(0,0,0,0.3) inset;
         position: relative;
@@ -73,7 +73,7 @@ st.markdown(f"""
     .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
     .block {{
         background: linear-gradient(135deg, rgba(17,30,48,0.92) 0%, rgba(30,58,82,0.7) 100%);
-        border: 1px solid var(--border); border-radius: 12px;
+        border: 1px solid rgba(255,165,0,0.35); border-radius: 12px;
         padding: 1.2rem 1.5rem; margin-bottom: 1.2rem;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }}
