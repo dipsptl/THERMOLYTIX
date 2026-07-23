@@ -1,18 +1,33 @@
 import streamlit as st
 
-# Login optional - upar corner ma bas ek button
-col1, col2 = st.columns([4,1])
-with col2:
-    if st.user.is_logged_in:
-        st.write(f"Hi, {st.user.name}")
-        st.button("Logout", on_click=st.logout)
-    else:
-        st.button("Login (optional)", on_click=st.login)
+# Custom CSS for login button styling
+st.markdown("""
+<style>
+div[data-testid="stButton"] > button {
+    background-color: #ff6b1a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: 600;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 9999;
+}
+div[data-testid="stButton"] > button:hover {
+    background-color: #e55a0a;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
 
-# --- Baki nu app hamesha chalu rehse, login vagar j ---
-st.title("Thermolytix")
-# ... tara original code ...
+if st.user.is_logged_in:
+    st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+else:
+    st.button("Login with Google", on_click=st.login)
 
+# --- tara baki nu original header/code ahiya thi shuru thay che ---
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
