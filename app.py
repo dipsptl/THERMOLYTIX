@@ -136,7 +136,6 @@ st.markdown(f"""
     .st-key-login_btn button:hover {{
         filter: brightness(1.08);
     }}
-    }}
 
     /* ═══════════════════════════════════════════════════════════
        MOBILE — header block is restacked into a single centered
