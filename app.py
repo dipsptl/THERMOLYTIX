@@ -138,16 +138,64 @@ st.markdown(f"""
     }}
     }}
 
+    /* ═══════════════════════════════════════════════════════════
+       MOBILE — header block is restacked into a single centered
+       column (logo → tagline → login button → status pills) so
+       nothing sits on top of anything else. Desktop rules above
+       are untouched.
+       ═══════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {{
-    .st-key-header_block [data-testid="stHorizontalBlock"] {{ flex-wrap: nowrap !important; gap: 0.5rem !important; }}
-    .st-key-header_block [data-testid="column"] {{ width: auto !important; flex: unset !important; min-width: 0 !important; }}
-    .logo-img {{ height: 230px !important; margin: -20px 0 -20px -25px !important; }}
-    .header-left {{ display: flex !important; flex-direction: column !important; align-items: flex-start !important; width: auto !important; flex: 0 0 auto; }}
-    .header-left > div {{ font-size: 0.5rem !important; text-align: left !important; padding-left: 5px !important; max-width: 200px !important; line-height: 1.1 !important; opacity: 0.7 !important; margin-top: -5px !important; white-space: nowrap !important; }}
-    .st-key-login_btn button {{ padding: 4px 14px !important; font-size: 0.65rem !important; border-radius: 6px !important; }}
-    .header-status {{ flex-direction: column !important; align-items: flex-end !important; gap: 0.4rem !important; width: auto !important; }}
-    .status-item {{ padding: 0.2rem 0.5rem !important; font-size: 0.30rem !important; border-radius: 3px !important; white-space: nowrap !important; }}
-    .st-key-header_block {{ padding: 0.2rem 0.6rem !important; }}
+    .st-key-header_block {{
+        padding: 1rem 0.8rem 1.1rem 0.8rem !important;
+    }}
+    /* Stack the two columns (logo | login) instead of side-by-side */
+    .st-key-header_block [data-testid="stHorizontalBlock"] {{
+        flex-wrap: wrap !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.2rem !important;
+    }}
+    .st-key-header_block [data-testid="column"] {{
+        width: 100% !important; flex: unset !important; min-width: 0 !important;
+        display: flex !important; justify-content: center !important;
+    }}
+    .logo-img {{
+        height: 170px !important;
+        margin: -10px 0 -10px 0 !important;
+    }}
+    .header-left {{
+        display: flex !important; flex-direction: column !important;
+        align-items: center !important; width: 100% !important; flex: 0 0 auto;
+    }}
+    .header-left > div {{
+        font-size: 0.7rem !important; text-align: center !important;
+        padding-left: 0 !important; max-width: 100% !important;
+        line-height: 1.2 !important; opacity: 0.85 !important;
+        margin-top: 0.15rem !important; white-space: normal !important;
+    }}
+    /* Login button gets its own centered row, no negative margins
+       that used to make it float up into the status pills */
+    .st-key-login_btn {{
+        display: flex !important; flex-direction: row !important;
+        align-items: center !important; justify-content: center !important;
+        margin: 0.5rem 0 0 0 !important; width: 100% !important;
+    }}
+    .st-key-login_btn button {{
+        padding: 5px 18px !important; font-size: 0.78rem !important; border-radius: 6px !important;
+    }}
+    /* Status pills sit in their own centered row below, with a
+       positive margin instead of the desktop's negative one */
+    .header-status {{
+        flex-direction: row !important; flex-wrap: wrap !important;
+        align-items: center !important; justify-content: center !important;
+        gap: 0.4rem !important; width: 100% !important;
+        margin-top: 0.7rem !important;
+    }}
+    .status-item {{
+        padding: 0.28rem 0.65rem !important; font-size: 0.64rem !important;
+        border-radius: 5px !important; white-space: nowrap !important;
+    }}
     .content-wrapper {{ padding: 1rem; }}
     }}
 </style>
