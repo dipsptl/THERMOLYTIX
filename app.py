@@ -138,62 +138,57 @@ st.markdown(f"""
     }}
 
     /* ═══════════════════════════════════════════════════════════
-       MOBILE — header block is restacked into a single centered
-       column (logo → tagline → login button → status pills) so
-       nothing sits on top of anything else. Desktop rules above
-       are untouched.
+       MOBILE — SAME layout as desktop (logo left, login top-right
+       corner, status pills row right-aligned below) just scaled
+       down, with the negative margin that used to cause the
+       overlap replaced by a small positive one.
        ═══════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {{
     .st-key-header_block {{
-        padding: 1rem 0.8rem 1.1rem 0.8rem !important;
+        padding: 0.6rem 0.8rem 1rem 0.8rem !important;
     }}
-    /* Stack the two columns (logo | login) instead of side-by-side */
     .st-key-header_block [data-testid="stHorizontalBlock"] {{
-        flex-wrap: wrap !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.2rem !important;
+        flex-wrap: nowrap !important;
+        align-items: flex-start !important;
+        gap: 0.4rem !important;
     }}
     .st-key-header_block [data-testid="column"] {{
-        width: 100% !important; flex: unset !important; min-width: 0 !important;
-        display: flex !important; justify-content: center !important;
+        width: auto !important; flex: unset !important; min-width: 0 !important;
     }}
     .logo-img {{
-        height: 170px !important;
-        margin: -10px 0 -10px 0 !important;
+        height: 150px !important;
+        margin: -14px 0 -14px -20px !important;
     }}
     .header-left {{
         display: flex !important; flex-direction: column !important;
-        align-items: center !important; width: 100% !important; flex: 0 0 auto;
+        align-items: flex-start !important; width: auto !important; flex: 0 0 auto;
     }}
     .header-left > div {{
-        font-size: 0.7rem !important; text-align: center !important;
-        padding-left: 0 !important; max-width: 100% !important;
-        line-height: 1.2 !important; opacity: 0.85 !important;
-        margin-top: 0.15rem !important; white-space: normal !important;
+        font-size: 0.62rem !important; text-align: left !important;
+        padding-left: 5px !important; max-width: 160px !important;
+        line-height: 1.15 !important; opacity: 0.8 !important;
+        margin-top: -3px !important; white-space: normal !important;
     }}
-    /* Login button gets its own centered row, no negative margins
-       that used to make it float up into the status pills */
     .st-key-login_btn {{
-        display: flex !important; flex-direction: row !important;
-        align-items: center !important; justify-content: center !important;
-        margin: 0.5rem 0 0 0 !important; width: 100% !important;
+        margin: 0 0 0 0 !important;
+        align-items: flex-end !important;
     }}
     .st-key-login_btn button {{
-        padding: 5px 18px !important; font-size: 0.78rem !important; border-radius: 6px !important;
+        padding: 4px 12px !important; font-size: 0.68rem !important; border-radius: 6px !important;
     }}
-    /* Status pills sit in their own centered row below, with a
-       positive margin instead of the desktop's negative one */
+    /* This margin-top used to be negative (inherited from desktop)
+       which is what dragged the pills up under the login button.
+       A small positive value keeps it right-aligned like desktop
+       but clear of the button. */
     .header-status {{
         flex-direction: row !important; flex-wrap: wrap !important;
-        align-items: center !important; justify-content: center !important;
-        gap: 0.4rem !important; width: 100% !important;
-        margin-top: 0.7rem !important;
+        justify-content: flex-end !important; align-items: center !important;
+        gap: 0.35rem !important; width: 100% !important;
+        margin-top: 0.5rem !important;
     }}
     .status-item {{
-        padding: 0.28rem 0.65rem !important; font-size: 0.64rem !important;
-        border-radius: 5px !important; white-space: nowrap !important;
+        padding: 0.2rem 0.5rem !important; font-size: 0.55rem !important;
+        border-radius: 4px !important; white-space: nowrap !important;
     }}
     .content-wrapper {{ padding: 1rem; }}
     }}
