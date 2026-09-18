@@ -7,12 +7,14 @@ from datetime import datetime
 import base64
 import os
 
+
 def get_base64_image(image_path):
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"Image not found: {image_path}")
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode("utf-8")
 
+# set_page_config must be the very first Streamlit command
 st.set_page_config(page_title="Thermolytix", page_icon="🌡️", layout="wide", initial_sidebar_state="collapsed")
 
 try:
@@ -23,37 +25,55 @@ except FileNotFoundError:
 
 st.markdown(f"""
 <style>
+    /* ── Top gap remove ── */
+    #MainMenu {{visibility: hidden;}}
+    header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
+    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; }}
+
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
         --warning: #FFB700; --danger: #FF3333; --dark-bg: #0A1628;
         --text-primary: #FFFFFF; --text-secondary: #B0B8C1; --border: #1E3A52;
     }}
     .logo-img {{
-        height: 333px; object-fit: contain;
+        height: 330px; object-fit: contain;
         filter: drop-shadow(0 4px 8px rgba(255,165,0,0.3));
-        display: block; margin-left: -30px; margin-top: -80px; margin-bottom: -90px;
+        display: block; margin-left: -30px; margin-top: -80px; margin-bottom: -70px;
     }}
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
-    .header-wrapper {{
-        background: linear-gradient(90deg, rgba(10,22,40,0.95) 0%, rgba(15,34,57,0.95) 100%);
-        border-bottom: 2px solid var(--border); padding: 0.8rem 2rem;
-        margin-bottom: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+
+    /* ── Header block — 3D attractive style ──
+       This is now a real st.container(key="header_block"), so the login
+       button (a native st.button) can actually live inside it in the DOM,
+       instead of a hand-written <div> that widgets can't be nested into. */
+    .st-key-header_block {{
+        background: linear-gradient(145deg, rgba(20,44,71,0.55) 0%, rgba(10,22,40,0.65) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,165,0,0.35);
+        border-radius: 14px;
+        padding: 0.7rem 1.4rem 1.5rem 1.8rem;
+        margin: 1.2rem 1rem 1rem 1rem;
+        box-shadow:
+            0 8px 32px rgba(0,0,0,0.45),
+            0 0 28px rgba(255,165,0,0.18),
+            0 1px 0 rgba(255,255,255,0.15) inset,
+            0 -1px 0 rgba(0,0,0,0.3) inset;
     }}
-    .header-content {{ max-width: 2200px; margin: 0 auto; }}
-    .header-top {{ display: flex; justify-content: space-between; align-items: center; gap: 1rem; }}
     .header-left {{ display: flex; flex-direction: column; align-items: flex-start; gap: 0rem; }}
-    .header-status {{ display: flex; gap: 1rem; font-size: 0.85rem; }}
+    .header-status {{ display: flex; justify-content: flex-end; align-items: center; gap: 0.6rem; font-size: 0.7rem; margin-top: -1.8rem; }}
     .status-item {{
-        display: flex; align-items: center; gap: 0.5rem;
-        padding: 0.6rem 1.2rem; background: rgba(0,255,65,0.1);
+        display: flex; align-items: center; gap: 0.4rem;
+        padding: 0.35rem 0.75rem; background: rgba(0,255,65,0.1);
         border: 1px solid var(--success); border-radius: 6px;
-        color: var(--success); font-weight: 600;
+        color: var(--success); font-weight: 600; font-size: 0.72rem;
     }}
+
     .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
     .block {{
         background: linear-gradient(135deg, rgba(17,30,48,0.92) 0%, rgba(30,58,82,0.7) 100%);
-        border: 1px solid var(--border); border-radius: 12px;
+        border: 1px solid rgba(255,165,0,0.35); border-radius: 12px;
         padding: 1.2rem 1.5rem; margin-bottom: 1.2rem;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }}
@@ -90,52 +110,100 @@ st.markdown(f"""
         border: none !important; border-radius: 8px !important;
         padding: 0.5rem 1.5rem !important;
     }}
-    @media (max-width: 768px) {{
-        .header-top {{ flex-direction: column; text-align: center; }}
-        .logo-img {{ height: 60px; }}
-        .header-status {{ flex-direction: column; width: 100%; }}
-        .content-wrapper {{ padding: 1rem; }}
+
+    /* ── Login button (flat 2D style, snug in the top-right corner, inside header) ── */
+    .st-key-login_btn {{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin: -0.2rem -0.6rem 0 0;
     }}
-    /* shrink prediction summary */
-    .block h2 {{
-        font-size: 2.2rem !important;
-        margin: 0.2rem 0 0.5rem 0 !important;
+    .st-key-login_btn button {{
+        background: linear-gradient(135deg, #FFA500, #FF6B00) !important;
+        color: #000000 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.15rem 0.6rem !important;
+        font-weight: 800 !important; font-size: 1.15rem !important;
+        box-shadow: none !important;
+    }}
+    .st-key-login_btn button p {{
+        font-size: 0.9rem !important;
+        font-weight: 400 !important;
+        line-height: 0.6 !important;
+        margin: 0 !important;
+    }}
+    .st-key-login_btn button:hover {{
+        filter: brightness(1.08);
+    }}
     }}
 
-    /* padding around sliders */
-    [data-testid="stSlider"] {{
-        padding: 0.4rem 1rem !important;
-    }}
-
-    /* fix download block empty space */
-    [data-testid="stVerticalBlock"] > div:has(.stDownloadButton) {{
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }}
+    /* ══════════════════════════════════════════════════════════════
+       MOBILE ONLY — fixes overlap between Login button and the
+       Linear Predict / Sensors Data / Risk Detection pills, and
+       aligns the header block width/margins to match the other
+       .block sections below it. Desktop styles above are untouched.
+       ══════════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {{
-        .header-top {{ flex-direction: column; text-align: center; }}
-        .logo-img {{ height: 60px; }}
-        .header-status {{ flex-direction: column; width: 100%; }}
-        .content-wrapper {{ padding: 1rem; }}
-        
-        /* NEW: Mobile માં green blocks છુપાવો */
-        .header-status {{ 
-            display: none !important; 
+        /* Match header block's outer margin/padding to the plain .block
+           elements so it doesn't look narrower/more indented than them */
+        .st-key-header_block {{
+            margin: 1rem 0 1rem 0 !important;
+            padding: 0.7rem 0.9rem 0.9rem 0.9rem !important;
         }}
-        
-        /* NEW: Mobile માં logo center કરો */
+        .st-key-header_block [data-testid="stHorizontalBlock"] {{
+            flex-wrap: nowrap !important; gap: 0.5rem !important;
+            align-items: flex-start !important;
+        }}
+        .st-key-header_block [data-testid="column"] {{
+            width: auto !important; flex: unset !important; min-width: 0 !important;
+        }}
+
+        /* Smaller logo so the header fits comfortably on a phone width */
+        .logo-img {{
+            height: 150px !important;
+            margin: 0 0 0 -12px !important;
+        }}
         .header-left {{
-            align-items: center !important;
-            width: 100%;
+            display: flex !important; flex-direction: column !important;
+            align-items: flex-start !important; width: auto !important; flex: 0 0 auto;
         }}
-        
-        /* NEW: Logo size મોટો રાખો mobile માં */
-        .logo-img {{ 
-            height: 120px !important;
-            margin: 0 auto !important;
+        .header-left > div {{
+            font-size: 0.6rem !important; text-align: left !important;
+            padding-left: 4px !important; max-width: 180px !important;
+            line-height: 1.15 !important; opacity: 0.8 !important;
+            margin-top: 0.1rem !important; white-space: normal !important;
         }}
-    }}
 
+        /* Login button: no negative offsets, sits cleanly top-right */
+        .st-key-login_btn {{
+            margin: 0 !important;
+            align-items: flex-end !important;
+        }}
+        .st-key-login_btn button {{
+            padding: 4px 14px !important; font-size: 0.65rem !important;
+            border-radius: 6px !important;
+        }}
+
+        /* KEY FIX: remove the desktop -1.8rem margin-top that was pulling
+           this row up and under the Login button. Let it flow normally
+           below the logo/login row, wrapping onto its own line(s). */
+        .header-status {{
+            margin-top: 0.7rem !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 0.4rem !important;
+            width: 100% !important;
+        }}
+        .status-item {{
+            padding: 0.28rem 0.6rem !important; font-size: 0.62rem !important;
+            border-radius: 5px !important; white-space: nowrap !important;
+        }}
+
+        .content-wrapper {{ padding: 1rem; }}
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -146,19 +214,32 @@ try:
 except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
-st.markdown(f"""
-<div class="header-wrapper"><div class="header-content"><div class="header-top">
-    <div class="header-left">
-        {logo_html}
-        <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;">Thermal Intelligence for Gearbox Cooling Systems</div>
-    </div>
-    <div class="header-status">
-        <div class="status-item">✓ System Active</div>
-        <div class="status-item">✓ Sensors OK</div>
-        <div class="status-item">✓ Cooling Normal</div>
-    </div>
-</div></div></div>
-""", unsafe_allow_html=True)
+# Everything below is rendered *inside* one real st.container, so the
+# native login button genuinely lives inside the header block in the DOM
+# (top row: logo | login button — status pills row sits under that).
+with st.container(key="header_block", gap=None):
+    col_logo, col_login = st.columns([5, 1], gap=None, vertical_alignment="top")
+    with col_logo:
+        st.markdown(f"""
+            <div class="header-left">
+                {logo_html}
+                <div style="color:#FFFFFF;font-size:0.75rem;font-weight:300;margin:0;opacity:0.85;padding-left:5px;"> Gearbox AI Temperature Prediction</div>
+            </div>
+        """, unsafe_allow_html=True)
+    with col_login:
+        with st.container(key="login_btn"):
+            if st.user.is_logged_in:
+                st.button(f"👤 {st.user.name} | Logout", on_click=st.logout)
+            else:
+                st.button("Login", on_click=st.login)
+
+    st.markdown("""
+        <div class="header-status">
+            <div class="status-item"> Linear Predict</div>
+            <div class="status-item"> Sensors Data</div>
+            <div class="status-item"> Risk Detection</div>
+        </div>
+    """, unsafe_allow_html=True)
 
 # ── LOAD MODEL ──
 @st.cache_resource
@@ -209,11 +290,10 @@ else:
     status_bg, status_border, status_dot, status_text, status_color, status_label = \
         "rgba(0,255,65,0.1)", "#00FF41", "🟢", "Safe", "#00FF41", "NORMAL"
 
-# BLOCK 2: PREDICTION SUMMARY — temp + status only (like old code)
+# BLOCK 2: PREDICTION SUMMARY
 st.markdown(f"""
 <div class="block">
     <div class="block-title">📊 Prediction Summary</div>
-    # change this line in BLOCK 2:
     <h2 style="color:white;margin:0.3rem 0 0.6rem 0;font-size:2rem;font-weight:900;">
         {pred_temp} <span style="font-size:1.2rem;color:#B0B8C1;">°C</span>
     </h2>
@@ -224,7 +304,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# BLOCK 3: SUGGESTIONS — only relevant ones (like old code)
+# BLOCK 3: SUGGESTIONS
 suggestions = []
 if rpm_val > 1500:
     suggestions.append(("⚠️", "Reduce RPM to control heat buildup."))
@@ -349,10 +429,7 @@ with col_title:
         </div>
     """, unsafe_allow_html=True)
 with col_btn:
-    st.markdown('<div style="padding-top:0.6rem;">', unsafe_allow_html=True)
-    # ... keep existing download button code here ...
-    st.markdown('</div>', unsafe_allow_html=True)
-with col_btn:
+    st.markdown('<div style="margin-top:28px;"></div>', unsafe_allow_html=True)
     try:
         from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
         from reportlab.lib.styles import getSampleStyleSheet
