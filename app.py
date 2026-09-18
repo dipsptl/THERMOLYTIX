@@ -138,57 +138,66 @@ st.markdown(f"""
     }}
 
     /* ═══════════════════════════════════════════════════════════
-       MOBILE — SAME layout as desktop (logo left, login top-right
-       corner, status pills row right-aligned below) just scaled
-       down, with the negative margin that used to cause the
-       overlap replaced by a small positive one.
+       MOBILE — box truly centered (max-width + auto margins),
+       login button contained inside the top-right corner with
+       real padding (no more overflow), status pills kept together
+       on the right side like desktop, and the block border turned
+       white on mobile.
        ═══════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {{
     .st-key-header_block {{
-        padding: 0.6rem 0.8rem 1rem 0.8rem !important;
+        max-width: 92% !important;
+        margin: 1rem auto !important;
+        padding: 0.9rem 1rem 1rem 1rem !important;
+        border-color: rgba(255,255,255,0.45) !important;
     }}
     .st-key-header_block [data-testid="stHorizontalBlock"] {{
         flex-wrap: nowrap !important;
         align-items: flex-start !important;
+        justify-content: space-between !important;
         gap: 0.4rem !important;
     }}
     .st-key-header_block [data-testid="column"] {{
         width: auto !important; flex: unset !important; min-width: 0 !important;
     }}
     .logo-img {{
-        height: 150px !important;
-        margin: -14px 0 -14px -20px !important;
+        height: 130px !important;
+        margin: 0 !important;
     }}
     .header-left {{
         display: flex !important; flex-direction: column !important;
         align-items: flex-start !important; width: auto !important; flex: 0 0 auto;
     }}
     .header-left > div {{
-        font-size: 0.62rem !important; text-align: left !important;
-        padding-left: 5px !important; max-width: 160px !important;
+        font-size: 0.6rem !important; text-align: left !important;
+        padding-left: 3px !important; max-width: 150px !important;
         line-height: 1.15 !important; opacity: 0.8 !important;
-        margin-top: -3px !important; white-space: normal !important;
+        margin-top: 0.2rem !important; white-space: normal !important;
     }}
+    /* Login button now sits fully inside the box, in its own
+       top-right corner, with real padding around it instead of
+       touching/overflowing the border. */
     .st-key-login_btn {{
-        margin: 0 0 0 0 !important;
+        margin: 0 !important;
         align-items: flex-end !important;
+        flex: 0 0 auto !important;
     }}
     .st-key-login_btn button {{
-        padding: 4px 12px !important; font-size: 0.68rem !important; border-radius: 6px !important;
+        padding: 4px 12px !important; font-size: 0.66rem !important; border-radius: 6px !important;
     }}
-    /* This margin-top used to be negative (inherited from desktop)
-       which is what dragged the pills up under the login button.
-       A small positive value keeps it right-aligned like desktop
-       but clear of the button. */
+    /* Pills kept together on one side (right), matching desktop,
+       instead of spreading across the row. */
     .header-status {{
-        flex-direction: row !important; flex-wrap: wrap !important;
+        flex-direction: row !important; flex-wrap: nowrap !important;
         justify-content: flex-end !important; align-items: center !important;
-        gap: 0.35rem !important; width: 100% !important;
-        margin-top: 0.5rem !important;
+        gap: 0.3rem !important; width: 100% !important;
+        margin-top: 0.7rem !important;
+        overflow-x: auto !important;
     }}
     .status-item {{
-        padding: 0.2rem 0.5rem !important; font-size: 0.55rem !important;
+        padding: 0.22rem 0.5rem !important; font-size: 0.52rem !important;
         border-radius: 4px !important; white-space: nowrap !important;
+        flex: 0 0 auto !important;
     }}
     .content-wrapper {{ padding: 1rem; }}
     }}
