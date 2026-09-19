@@ -154,12 +154,15 @@ st.markdown(f"""
        clear of the logo — so nothing can ever overlap again
        regardless of column-stacking quirks.
        ══════════════════════════════════════════════════════════════ */
-    @media (max-width: 768px) {{
+        @media (max-width: 768px) {{
         .st-key-header_block {{
             margin: 1rem 0 1rem 0 !important;
-            padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
+            padding: 0 !important;
             position: relative !important;
-            min-height: 190px !important;
+            height: 210px !important;
+            min-height: 210px !important;
+            box-sizing: border-box !important;
+            overflow: visible !important;
         }}
         .st-key-header_block [data-testid="stHorizontalBlock"] {{
             flex-direction: column !important;
@@ -169,12 +172,12 @@ st.markdown(f"""
             width: 100% !important; flex: unset !important; flex-basis: 100% !important; min-width: 0 !important;
         }}
 
-        /* Logo: pinned to the top-left of the block */
+        /* Logo: top-left, smaller */
         .logo-img {{
             position: absolute !important;
-            left: -8px !important;
+            left: 6px !important;
             top: -10px !important;
-            height: 165px !important;
+            height: 135px !important;
             width: auto !important;
             max-width: none !important;
             margin: 0 !important;
@@ -189,7 +192,7 @@ st.markdown(f"""
         .header-left > div {{
             position: absolute !important;
             left: 0.9rem !important;
-            bottom: 0.6rem !important;
+            bottom: 0.7rem !important;
             top: auto !important;
             font-size: 0.6rem !important; text-align: left !important;
             padding-left: 4px !important; max-width: none !important;
@@ -201,7 +204,7 @@ st.markdown(f"""
         .st-key-login_btn {{
             position: absolute !important;
             top: 0.6rem !important;
-            right: 0.3rem !important;
+            right: 0.6rem !important;
             margin: 0 !important;
             width: auto !important;
             z-index: 5 !important;
@@ -216,7 +219,7 @@ st.markdown(f"""
         .header-status {{
             position: absolute !important;
             bottom: 0.6rem !important;
-            right: 0.3rem !important;
+            right: 0.5rem !important;
             top: auto !important;
             margin-top: 0 !important;
             flex-direction: row !important;
