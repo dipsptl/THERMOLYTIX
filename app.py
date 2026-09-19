@@ -28,7 +28,7 @@ st.markdown(f"""
     /* ── Top gap remove ── */
     #MainMenu {{visibility: hidden;}}
     header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
-    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; max-width: 1400px !important; margin-left: auto !important; margin-right: auto !important; }}
+    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; padding-left: 0 !important; padding-right: 0 !important; position: relative; max-width: 1400px !important; margin-left: auto !important; margin-right: auto !important; }}
 
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
@@ -178,8 +178,8 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 215px !important;
-            max-width: 82% !important;
+            height: 245px !important;
+            max-width: 88% !important;
             margin: 0 0 0 -12px !important;
         }}
         .header-left {{
@@ -187,10 +187,14 @@ st.markdown(f"""
             align-items: flex-start !important; width: 100% !important;
         }}
         .header-left > div {{
+            position: absolute !important;
+            left: 0.9rem !important;
+            bottom: 0.6rem !important;
+            top: auto !important;
             font-size: 0.7rem !important; text-align: left !important;
-            padding-left: 4px !important; max-width: 85% !important;
+            padding-left: 4px !important; max-width: 38% !important;
             line-height: 1.2 !important; opacity: 1 !important; color: #FFFFFF !important;
-            margin-top: 0.2rem !important; white-space: normal !important;
+            margin-top: 0 !important; white-space: normal !important;
         }}
 
         /* Login button: pinned to the top-right corner of the header
@@ -228,7 +232,7 @@ st.markdown(f"""
             max-width: 60% !important;
         }}
         .status-item {{
-            padding: 0.18rem 0.45rem !important; font-size: 0.5rem !important;
+            padding: 0.25rem 0.55rem !important; font-size: 0.6rem !important;
             border-radius: 5px !important; white-space: nowrap !important;
             background: rgba(0,255,65,0.1) !important;
             border: 1px solid var(--success) !important;
