@@ -78,10 +78,10 @@ st.markdown(f"""
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }}
     .block-title {{
-        color: var(--text-primary); font-size: 1rem; font-weight: 700;
-        margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+        color: var(--text-primary); font-size: 0.9rem; font-weight: 700;
+        margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;
         text-transform: uppercase; letter-spacing: 1px;
-        border-bottom: 1px solid var(--border); padding-bottom: 0.6rem;
+        border-bottom: 1px solid var(--border); padding-bottom: 0.3rem;
     }}
     .suggestion-item {{
         display: flex; align-items: flex-start; gap: 0.6rem;
@@ -178,8 +178,8 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 195px !important;
-            max-width: 78% !important;
+            height: 215px !important;
+            max-width: 82% !important;
             margin: 0 0 0 -12px !important;
         }}
         .header-left {{
@@ -205,7 +205,7 @@ st.markdown(f"""
             z-index: 5 !important;
         }}
         .st-key-login_btn button {{
-            padding: 4px 14px !important; font-size: 0.65rem !important;
+            padding: 2px 10px !important; font-size: 0.55rem !important;
             border-radius: 6px !important;
         }}
 
@@ -230,9 +230,9 @@ st.markdown(f"""
         .status-item {{
             padding: 0.18rem 0.45rem !important; font-size: 0.5rem !important;
             border-radius: 5px !important; white-space: nowrap !important;
-            background: rgba(255,255,255,0.06) !important;
-            border: 1px solid rgba(255,255,255,0.25) !important;
-            color: #C9CFD6 !important;
+            background: rgba(0,255,65,0.1) !important;
+            border: 1px solid var(--success) !important;
+            color: var(--success) !important;
             box-shadow: none !important;
         }}
 
