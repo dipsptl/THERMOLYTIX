@@ -54,7 +54,7 @@ st.markdown(f"""
         border: 1px solid rgba(255,165,0,0.35);
         border-radius: 14px;
         padding: 0.7rem 1.4rem 1.5rem 1.8rem;
-        margin: 1.2rem 1rem 1rem 1rem;
+        margin: 1.2rem 0 1rem 0;
         box-shadow:
             0 8px 32px rgba(0,0,0,0.45),
             0 0 28px rgba(255,165,0,0.18),
@@ -159,7 +159,7 @@ st.markdown(f"""
            elements so it doesn't look narrower/more indented than them.
            position:relative anchors the absolutely-positioned Login button. */
         .st-key-header_block {{
-            margin: 1rem 1rem 1rem 1rem !important;
+            margin: 1rem 0 1rem 0 !important;
             padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
             position: relative !important;
         }}
