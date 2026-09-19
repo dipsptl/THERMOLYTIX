@@ -180,7 +180,7 @@ st.markdown(f"""
         .logo-img {{
             height: 299px !important;
             max-width: 88% !important;
-            margin: 0 0 0 -12px !important;
+            margin: -45px 0 -45px -12px !important;
         }}
         .header-left {{
             display: flex !important; flex-direction: column !important;
@@ -189,12 +189,12 @@ st.markdown(f"""
         .header-left > div {{
             position: absolute !important;
             left: 0.9rem !important;
-            bottom: 0.6rem !important;
+            bottom: 2.2rem !important;
             top: auto !important;
             font-size: 0.6rem !important; text-align: left !important;
-            padding-left: 4px !important; max-width: 38% !important;
+            padding-left: 4px !important; max-width: none !important;
             line-height: 1.2 !important; opacity: 1 !important; color: #FFFFFF !important;
-            margin-top: 0 !important; white-space: normal !important;
+            margin-top: 0 !important; white-space: nowrap !important;
         }}
 
         /* Login button: pinned to the top-right corner of the header
@@ -224,12 +224,12 @@ st.markdown(f"""
             top: auto !important;
             margin-top: 0 !important;
             flex-direction: row !important;
-            flex-wrap: wrap !important;
+            flex-wrap: nowrap !important;
             justify-content: flex-end !important;
             align-items: center !important;
             gap: 0.3rem !important;
             width: auto !important;
-            max-width: 60% !important;
+            max-width: 100% !important;
         }}
         .status-item {{
             padding: 0.2rem 0.35rem !important; font-size: 0.4rem !important;
