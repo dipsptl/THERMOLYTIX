@@ -70,7 +70,7 @@ st.markdown(f"""
         color: var(--success); font-weight: 600; font-size: 0.72rem;
     }}
 
-    .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 1rem; }}
+    .content-wrapper {{ padding: 1.5rem 1rem; }}
     .block {{
         background: linear-gradient(135deg, rgba(17,30,48,0.92) 0%, rgba(30,58,82,0.7) 100%);
         border: 1px solid rgba(255,165,0,0.35); border-radius: 12px;
@@ -135,7 +135,6 @@ st.markdown(f"""
     }}
     .st-key-login_btn button:hover {{
         filter: brightness(1.08);
-    }}
     }}
 
     /* ══════════════════════════════════════════════════════════════
