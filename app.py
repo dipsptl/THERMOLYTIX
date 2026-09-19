@@ -171,7 +171,7 @@ st.markdown(f"""
         .logo-img {{
             height: 250px !important;
             max-width: 100% !important;
-            margin: -53px 0 -53px -40px !important;
+            margin: -38px 0 -68px -40px !important;
             transform: scale(1.2) !important;
             transform-origin: left center !important;
         }}
