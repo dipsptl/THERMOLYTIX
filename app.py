@@ -162,8 +162,8 @@ st.markdown(f"""
             margin: 1rem 0 1rem 0 !important;
             padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
             position: relative !important;
+            min-height: 200px !important;
         }}
-
         /* Let the logo/tagline column and the login column stack instead
            of fighting Streamlit's flex row on narrow widths — this is
            what was causing the Login button to render mid-overlap. */
@@ -180,7 +180,7 @@ st.markdown(f"""
             .logo-img {{
             height: 250px !important;
             max-width: 100% !important;
-            margin: -59px 0 -59px -12px !important;
+            margin: -53px 0 -53px -22px !important;
             transform: scale(1.2) !important;
             transform-origin: left center !important;
         }}
@@ -191,7 +191,7 @@ st.markdown(f"""
         .header-left > div {{
             position: absolute !important;
             left: 0.9rem !important;
-            bottom: 1.6rem !important;
+            bottom: 0.6rem !important;
             top: auto !important;
             font-size: 0.6rem !important; text-align: left !important;
             padding-left: 4px !important; max-width: none !important;
