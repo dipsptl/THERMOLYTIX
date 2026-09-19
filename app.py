@@ -43,10 +43,7 @@ st.markdown(f"""
     .stApp {{ {bg_style} color: var(--text-primary); }}
     .main {{ padding: 0 !important; }}
 
-    /* ── Header block — 3D attractive style ──
-       This is now a real st.container(key="header_block"), so the login
-       button (a native st.button) can actually live inside it in the DOM,
-       instead of a hand-written <div> that widgets can't be nested into. */
+    /* ── Header block — 3D attractive style ── */
     .st-key-header_block {{
         background: linear-gradient(145deg, rgba(20,44,71,0.55) 0%, rgba(10,22,40,0.65) 100%);
         backdrop-filter: blur(12px);
@@ -138,31 +135,16 @@ st.markdown(f"""
     }}
 
     /* ══════════════════════════════════════════════════════════════
-       MOBILE ONLY — fixes overlap between Login button and the
-       Linear Predict / Sensors Data / Risk Detection pills, and
-       aligns the header block width/margins to match the other
-       .block sections below it. Desktop styles above are untouched.
-
-       Fix approach: instead of relying on Streamlit's column flex
-       layout (which was squeezing/misplacing the Login button on
-       narrow screens and causing it to overlap the tagline + pills),
-       the header block is made position:relative and the Login
-       button is pulled out of the column flow with
-       position:absolute, pinned cleanly to its top-right corner.
-       The logo column stacks full-width below it, and the pills
-       row is pushed down with enough top margin to always sit
-       clear of the logo — so nothing can ever overlap again
-       regardless of column-stacking quirks.
+       MOBILE ONLY — desktop styles above are untouched.
+       Login top-right, logo top-left, gear text bottom-left,
+       green pills bottom-right (all measured from the header block).
        ══════════════════════════════════════════════════════════════ */
-        @media (max-width: 768px) {{
+    @media (max-width: 768px) {{
         .st-key-header_block {{
             margin: 1rem 0 1rem 0 !important;
-            padding: 0 !important;
+            padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
             position: relative !important;
-            height: 210px !important;
-            min-height: 210px !important;
-            box-sizing: border-box !important;
-            overflow: visible !important;
+            min-height: 200px !important;
         }}
         .st-key-header_block [data-testid="stHorizontalBlock"] {{
             flex-direction: column !important;
@@ -172,16 +154,26 @@ st.markdown(f"""
             width: 100% !important; flex: unset !important; flex-basis: 100% !important; min-width: 0 !important;
         }}
 
-        /* Logo: top-left, smaller */
+        /* KEY FIX: make Streamlit's inner wrappers non-positioned so the
+           `bottom` of the gear text and green pills is measured from the
+           header block itself (bottom of the block), not a short wrapper. */
+        .st-key-header_block [data-testid="stElementContainer"],
+        .st-key-header_block [data-testid="stMarkdown"],
+        .st-key-header_block [data-testid="stMarkdownContainer"],
+        .st-key-header_block [data-testid="stColumn"],
+        .st-key-header_block [data-testid="column"],
+        .st-key-header_block [data-testid="stHorizontalBlock"],
+        .header-left {{
+            position: static !important;
+        }}
+
+        /* Logo: same size as before, moved more to the left */
         .logo-img {{
-            position: absolute !important;
-            left: 6px !important;
-            top: -10px !important;
-            height: 135px !important;
-            width: auto !important;
-            max-width: none !important;
-            margin: 0 !important;
-            transform: none !important;
+            height: 250px !important;
+            max-width: 100% !important;
+            margin: -53px 0 -53px -40px !important;
+            transform: scale(1.2) !important;
+            transform-origin: left center !important;
         }}
         .header-left {{
             display: flex !important; flex-direction: column !important;
@@ -192,7 +184,7 @@ st.markdown(f"""
         .header-left > div {{
             position: absolute !important;
             left: 0.9rem !important;
-            bottom: 0.7rem !important;
+            bottom: 0.6rem !important;
             top: auto !important;
             font-size: 0.6rem !important; text-align: left !important;
             padding-left: 4px !important; max-width: none !important;
@@ -200,11 +192,11 @@ st.markdown(f"""
             margin-top: 0 !important; white-space: nowrap !important;
         }}
 
-        /* Login: top-right */
+        /* Login button: top-right */
         .st-key-login_btn {{
             position: absolute !important;
             top: 0.6rem !important;
-            right: 0.6rem !important;
+            right: 0.3rem !important;
             margin: 0 !important;
             width: auto !important;
             z-index: 5 !important;
@@ -215,11 +207,11 @@ st.markdown(f"""
             border-radius: 6px !important;
         }}
 
-        /* Green buttons: bottom-right */
+        /* Green pills: bottom-right */
         .header-status {{
             position: absolute !important;
             bottom: 0.6rem !important;
-            right: 0.5rem !important;
+            right: 0.3rem !important;
             top: auto !important;
             margin-top: 0 !important;
             flex-direction: row !important;
@@ -251,9 +243,6 @@ try:
 except FileNotFoundError:
     logo_html = '<span style="font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#FFA500 0%,#00D4FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">THERMOLYTIX</span>'
 
-# Everything below is rendered *inside* one real st.container, so the
-# native login button genuinely lives inside the header block in the DOM
-# (top row: logo | login button — status pills row sits under that).
 with st.container(key="header_block", gap=None):
     col_logo, col_login = st.columns([5, 1], gap=None, vertical_alignment="top")
     with col_logo:
