@@ -28,7 +28,7 @@ st.markdown(f"""
     /* ── Top gap remove ── */
     #MainMenu {{visibility: hidden;}}
     header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
-    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; }}
+    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; max-width: 1400px !important; margin-left: auto !important; margin-right: auto !important; }}
 
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
@@ -178,8 +178,8 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 130px !important;
-            max-width: 68% !important;
+            height: 165px !important;
+            max-width: 70% !important;
             margin: 0 0 0 -12px !important;
         }}
         .header-left {{
@@ -187,10 +187,10 @@ st.markdown(f"""
             align-items: flex-start !important; width: 100% !important;
         }}
         .header-left > div {{
-            font-size: 0.6rem !important; text-align: left !important;
-            padding-left: 4px !important; max-width: 70% !important;
-            line-height: 1.15 !important; opacity: 0.8 !important;
-            margin-top: 0.1rem !important; white-space: normal !important;
+            font-size: 0.7rem !important; text-align: left !important;
+            padding-left: 4px !important; max-width: 85% !important;
+            line-height: 1.2 !important; opacity: 1 !important; color: #FFFFFF !important;
+            margin-top: 0.2rem !important; white-space: normal !important;
         }}
 
         /* Login button: pinned to the top-right corner of the header
@@ -214,16 +214,16 @@ st.markdown(f"""
            below the logo, wrapping onto its own line(s), with enough
            top spacing to clear the absolutely-positioned button. */
         .header-status {{
-            margin-top: 0.8rem !important;
+            margin-top: 1.3rem !important;
             flex-direction: row !important;
             flex-wrap: wrap !important;
             justify-content: flex-start !important;
             align-items: center !important;
-            gap: 0.4rem !important;
+            gap: 0.35rem !important;
             width: 100% !important;
         }}
         .status-item {{
-            padding: 0.28rem 0.6rem !important; font-size: 0.62rem !important;
+            padding: 0.2rem 0.5rem !important; font-size: 0.55rem !important;
             border-radius: 5px !important; white-space: nowrap !important;
         }}
 
