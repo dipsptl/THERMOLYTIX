@@ -177,10 +177,12 @@ st.markdown(f"""
 
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
-        .logo-img {{
-            height: 333px !important;
-            max-width: 88% !important;
-            margin: -45px 0 -45px -12px !important;
+            .logo-img {{
+            height: 250px !important;
+            max-width: 100% !important;
+            margin: -59px 0 -59px -12px !important;
+            transform: scale(1.2) !important;
+            transform-origin: left center !important;
         }}
         .header-left {{
             display: flex !important; flex-direction: column !important;
@@ -203,7 +205,7 @@ st.markdown(f"""
         .st-key-login_btn {{
             position: absolute !important;
             top: 0.6rem !important;
-            right: 0.7rem !important;
+            right: 0.3rem !important;
             margin: 0 !important;
             width: auto !important;
             z-index: 5 !important;
