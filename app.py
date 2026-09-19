@@ -178,7 +178,7 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 245px !important;
+            height: 299px !important;
             max-width: 88% !important;
             margin: 0 0 0 -12px !important;
         }}
@@ -191,7 +191,7 @@ st.markdown(f"""
             left: 0.9rem !important;
             bottom: 0.6rem !important;
             top: auto !important;
-            font-size: 0.7rem !important; text-align: left !important;
+            font-size: 0.6rem !important; text-align: left !important;
             padding-left: 4px !important; max-width: 38% !important;
             line-height: 1.2 !important; opacity: 1 !important; color: #FFFFFF !important;
             margin-top: 0 !important; white-space: normal !important;
@@ -209,7 +209,7 @@ st.markdown(f"""
             z-index: 5 !important;
         }}
         .st-key-login_btn button {{
-            padding: 2px 10px !important; font-size: 0.55rem !important;
+            padding: 1.5px 6.5px !important; font-size: 0.55rem !important;
             border-radius: 6px !important;
         }}
 
@@ -232,7 +232,7 @@ st.markdown(f"""
             max-width: 60% !important;
         }}
         .status-item {{
-            padding: 0.25rem 0.55rem !important; font-size: 0.6rem !important;
+            padding: 0.2rem 0.35rem !important; font-size: 0.4rem !important;
             border-radius: 5px !important; white-space: nowrap !important;
             background: rgba(0,255,65,0.1) !important;
             border: 1px solid var(--success) !important;
