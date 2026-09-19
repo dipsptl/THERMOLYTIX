@@ -178,8 +178,8 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 165px !important;
-            max-width: 70% !important;
+            height: 195px !important;
+            max-width: 78% !important;
             margin: 0 0 0 -12px !important;
         }}
         .header-left {{
@@ -214,17 +214,26 @@ st.markdown(f"""
            below the logo, wrapping onto its own line(s), with enough
            top spacing to clear the absolutely-positioned button. */
         .header-status {{
-            margin-top: 1.3rem !important;
+            position: absolute !important;
+            bottom: 0.6rem !important;
+            right: 0.7rem !important;
+            top: auto !important;
+            margin-top: 0 !important;
             flex-direction: row !important;
             flex-wrap: wrap !important;
-            justify-content: flex-start !important;
+            justify-content: flex-end !important;
             align-items: center !important;
-            gap: 0.35rem !important;
-            width: 100% !important;
+            gap: 0.3rem !important;
+            width: auto !important;
+            max-width: 60% !important;
         }}
         .status-item {{
-            padding: 0.2rem 0.5rem !important; font-size: 0.55rem !important;
+            padding: 0.18rem 0.45rem !important; font-size: 0.5rem !important;
             border-radius: 5px !important; white-space: nowrap !important;
+            background: rgba(255,255,255,0.06) !important;
+            border: 1px solid rgba(255,255,255,0.25) !important;
+            color: #C9CFD6 !important;
+            box-shadow: none !important;
         }}
 
         .content-wrapper {{ padding: 1rem; }}
