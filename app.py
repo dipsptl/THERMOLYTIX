@@ -70,7 +70,7 @@ st.markdown(f"""
         color: var(--success); font-weight: 600; font-size: 0.72rem;
     }}
 
-    .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }}
+    .content-wrapper {{ max-width: 1400px; margin: 0 auto; padding: 1.5rem 1rem; }}
     .block {{
         background: linear-gradient(135deg, rgba(17,30,48,0.92) 0%, rgba(30,58,82,0.7) 100%);
         border: 1px solid rgba(255,165,0,0.35); border-radius: 12px;
@@ -160,7 +160,7 @@ st.markdown(f"""
            elements so it doesn't look narrower/more indented than them.
            position:relative anchors the absolutely-positioned Login button. */
         .st-key-header_block {{
-            margin: 1rem 0 1rem 0 !important;
+            margin: 1rem 1rem 1rem 1rem !important;
             padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
             position: relative !important;
         }}
@@ -169,10 +169,11 @@ st.markdown(f"""
            of fighting Streamlit's flex row on narrow widths — this is
            what was causing the Login button to render mid-overlap. */
         .st-key-header_block [data-testid="stHorizontalBlock"] {{
-            display: block !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
         }}
         .st-key-header_block [data-testid="column"] {{
-            width: 100% !important; flex: unset !important; min-width: 0 !important;
+            width: 100% !important; flex: unset !important; flex-basis: 100% !important; min-width: 0 !important;
         }}
 
         /* Smaller logo, capped width so it never runs under the Login
