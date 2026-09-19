@@ -178,7 +178,7 @@ st.markdown(f"""
         /* Smaller logo, capped width so it never runs under the Login
            button pinned to the top-right corner */
         .logo-img {{
-            height: 33px !important;
+            height: 333px !important;
             max-width: 88% !important;
             margin: -45px 0 -45px -12px !important;
         }}
