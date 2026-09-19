@@ -28,7 +28,7 @@ st.markdown(f"""
     /* ── Top gap remove ── */
     #MainMenu {{visibility: hidden;}}
     header[data-testid="stHeader"] {{ background: transparent; height: 2.2rem; }}
-    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; padding-left: 0 !important; padding-right: 0 !important; position: relative; max-width: 1400px !important; margin-left: auto !important; margin-right: auto !important; }}
+    .block-container {{ padding-top: 0.6rem !important; padding-bottom: 1rem !important; position: relative; }}
 
     :root {{
         --primary: #FFA500; --secondary: #00D4FF; --success: #00FF41;
