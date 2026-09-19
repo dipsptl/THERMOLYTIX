@@ -155,18 +155,12 @@ st.markdown(f"""
        regardless of column-stacking quirks.
        ══════════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {{
-        /* Match header block's outer margin/padding to the plain .block
-           elements so it doesn't look narrower/more indented than them.
-           position:relative anchors the absolutely-positioned Login button. */
         .st-key-header_block {{
             margin: 1rem 0 1rem 0 !important;
             padding: 0.6rem 0.9rem 0.9rem 0.9rem !important;
             position: relative !important;
-            min-height: 200px !important;
+            min-height: 190px !important;
         }}
-        /* Let the logo/tagline column and the login column stack instead
-           of fighting Streamlit's flex row on narrow widths — this is
-           what was causing the Login button to render mid-overlap. */
         .st-key-header_block [data-testid="stHorizontalBlock"] {{
             flex-direction: column !important;
             align-items: stretch !important;
@@ -175,19 +169,23 @@ st.markdown(f"""
             width: 100% !important; flex: unset !important; flex-basis: 100% !important; min-width: 0 !important;
         }}
 
-        /* Smaller logo, capped width so it never runs under the Login
-           button pinned to the top-right corner */
-            .logo-img {{
-            height: 250px !important;
-            max-width: 100% !important;
-            margin: -53px 0 -53px -22px !important;
-            transform: scale(1.2) !important;
-            transform-origin: left center !important;
+        /* Logo: pinned to the top-left of the block */
+        .logo-img {{
+            position: absolute !important;
+            left: -8px !important;
+            top: -10px !important;
+            height: 165px !important;
+            width: auto !important;
+            max-width: none !important;
+            margin: 0 !important;
+            transform: none !important;
         }}
         .header-left {{
             display: flex !important; flex-direction: column !important;
             align-items: flex-start !important; width: 100% !important;
         }}
+
+        /* Gear text: bottom-left */
         .header-left > div {{
             position: absolute !important;
             left: 0.9rem !important;
@@ -199,9 +197,7 @@ st.markdown(f"""
             margin-top: 0 !important; white-space: nowrap !important;
         }}
 
-        /* Login button: pinned to the top-right corner of the header
-           box, out of normal document flow so it can never collide
-           with the logo or the status pills below it */
+        /* Login: top-right */
         .st-key-login_btn {{
             position: absolute !important;
             top: 0.6rem !important;
@@ -216,14 +212,11 @@ st.markdown(f"""
             border-radius: 6px !important;
         }}
 
-        /* KEY FIX: remove the desktop -1.8rem margin-top that was pulling
-           this row up and under the Login button. It now flows normally
-           below the logo, wrapping onto its own line(s), with enough
-           top spacing to clear the absolutely-positioned button. */
+        /* Green buttons: bottom-right */
         .header-status {{
             position: absolute !important;
             bottom: 0.6rem !important;
-            right: 0.7rem !important;
+            right: 0.3rem !important;
             top: auto !important;
             margin-top: 0 !important;
             flex-direction: row !important;
