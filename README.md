@@ -1,13 +1,21 @@
  ⚙️ THERMOLYTIX
 
-An AI-powered system that predicts gearbox temperature in cooling towers using Machine Learning and provides real-time monitoring through an interactive dashboard.
+THERMOLYTIX is an AI-powered thermal monitoring and prediction system designed for cooling tower gearbox applications. It uses Machine Learning to predict gearbox operating temperature from key parameters such as load, RPM, ambient temperature, and oil viscosity.
 
+The system provides an interactive dashboard for real-time thermal monitoring, temperature prediction, trend visualization, and early detection of abnormal operating conditions.
 ---
 
 ## 🚀 Overview
-This project focuses on predicting gearbox temperature to prevent overheating and failure in cooling tower systems.
+THERMOLYTIX is developed to help engineers and maintenance teams identify potential gearbox overheating conditions before they lead to performance degradation or failure.
 
-It enables early detection of abnormal conditions and supports preventive maintenance.
+By combining Machine Learning with industrial operating parameters, the system provides a data-driven approach to:
+
+🔥 Predict gearbox temperature
+📊 Monitor thermal behavior through an interactive dashboard
+⚠️ Identify abnormal temperature conditions
+🔧 Support preventive and condition-based maintenance
+📈 Analyze operating trends and thermal performance
+⚙️ Assist engineers in making faster maintenance decisions
 
 ---
 
